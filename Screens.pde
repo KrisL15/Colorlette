@@ -1,14 +1,5 @@
 PFont brandFont;  //upload brand font (for text and/or brand title)
 
-void setup() {
-  size(600,900);
-}
-
-void draw() {
-  colorWheel();
-  
-}
-
 void home() {
   background(255);
   textFont(brandFont);  //or upload an image?
