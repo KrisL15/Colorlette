@@ -1,6 +1,6 @@
 PFont brandFont;  //upload brand font (for text and/or brand title)
 
-void home() {
+void homePage() {
   background(255);
   textFont(brandFont);  //or upload an image?
   textAlign(CENTER);
