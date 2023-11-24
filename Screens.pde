@@ -1,6 +1,15 @@
 PFont brandFont;  //upload brand font (for text and/or brand title)
 
-void homePage() {
+void setup() {
+  size(600,900);
+}
+
+void draw() {
+  colorWheel();
+  
+}
+
+void home() {
   background(255);
   textFont(brandFont);  //or upload an image?
   textAlign(CENTER);
@@ -9,23 +18,23 @@ void homePage() {
 
 void colorWheel() {
   //custom color square
-  //fill()  //based on GUI slider values
-  rect(width*0.25,150 , width*0.75,300);
+  fill(255);  //based on GUI slider values
+  rect(width*0.25,100 , width/2,250);
   fill(150,150,150);
-  rect(width*0.25,300 , width*0.72,350);
-  textFont(brandFont);
-  textSize(100);
+  rect(width*0.25,350 , width/2,50);
+  //textFont(brandFont);
+  textSize(25);
   textAlign(CENTER);
-  fill(255);
+  fill(0);
   text("#______", width/2, 225);
   
   
   //slider texts
-  textFont(brandFont);
+  //textFont(brandFont);
   textAlign(LEFT);
-  text("red", width/3, 450);
-  text("green", width/3, 500);
-  text("blue", width/3, 550);
+  text("red", width/4, 450);
+  text("green", width/4, 500);
+  text("blue", width/4, 550);
 }
 
 
