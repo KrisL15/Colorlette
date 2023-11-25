@@ -1,16 +1,31 @@
+PImage brand;
+//brand = loadImage("Colorlette.png");
 PFont brandFont;  //upload brand font (for text and/or brand title)
+//brandFont = createFont("Cambria-Bold-48.vwl". 48);
+
+int r, g, b;
+
+void navigatorBar() {
+  fill(155, 98, 197);
+  noStroke();
+  rect(0,0 , 800,40);
+}
 
 void home() {
   background(255);
-  textFont(brandFont);  //or upload an image?
+  navigatorBar();
+  invisibleControls();
+  //textFont(brandFont);  //or upload an image?
   textAlign(CENTER);
-
+  //image(brand, width/2, 100);
 }
 
 void colorWheel() {
+  background(255);
+  navigatorBar();
   //custom color square
-  fill(255);  //based on GUI slider values
-  rect(width*0.25,100 , width/2,250);
+  fill(color(r, g, b));  //based on GUI slider values
+  rect(width*0.25,80 , width/2,270);
   fill(150,150,150);
   rect(width*0.25,350 , width/2,50);
   //textFont(brandFont);
@@ -26,49 +41,72 @@ void colorWheel() {
   text("red", width/4, 450);
   text("green", width/4, 500);
   text("blue", width/4, 550);
+  
+  redValue.setVisible(true);
+  greenValue.setVisible(true);
+  blueValue.setVisible(true);
 }
 
 
 void exploreColorsMain() {
-  textFont(brandFont);
+  background(255);
+  navigatorBar();
+  invisibleControls();
+  //textFont(brandFont);
   textAlign(CENTER);
-  textSize(150);
-  text("Explore Colors!", width/2, 150);
+  textSize(50);
+  text("Explore Colors!", width/2, 125);
 }
 
 void exploreColors2() {
-  
+  background(255);
+  navigatorBar();
+  invisibleControls();
 }
 
 void exploreColorsSelected() {
-  
+  background(255);
+  navigatorBar();
+  invisibleControls();
 }
 
 void explorePalettes() {
-  textFont(brandFont);
+  background(255);
+  navigatorBar();
+  invisibleControls();
+  //textFont(brandFont);
   textAlign(CENTER);
-  textSize(150);
-  text("Explore Our Favorite Color Palettes!", width/2, 150);
+  textSize(50);
+  text("Explore Our" + "\n" + "Favorite Color Palettes!", width/2, 125);
 }
 
 void explorePaletteSelected() {
-  textFont(brandFont);
+  background(255);
+  navigatorBar();
+  invisibleControls();
+  //textFont(brandFont);
   textAlign(CENTER);
-  textSize(150);
+  textSize(50);
   //text(colorPalette, width/2, 150);
   
 }
 
 void myPalettes() {
-  textFont(brandFont);
+  background(255);
+  navigatorBar();
+  invisibleControls();
+  //textFont(brandFont);
   textAlign(CENTER);
-  textSize(150);
-  text("My Palettes", width/2, 150);
+  textSize(80);
+  text("My Palettes", width/2, 125);
 }
 
 void myPalettesSelected() {
-  textFont(brandFont);
+  background(255);
+  navigatorBar();
+  invisibleControls();
+  //textFont(brandFont);
   textAlign(CENTER);
-  textSize(150);
-  //text(myPalette, width/2, 150);
+  textSize(80);
+  //text(myPalette, width/2, 125);
 }
