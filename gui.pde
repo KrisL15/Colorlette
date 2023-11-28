@@ -15,19 +15,19 @@
  */
 
 public void colorWheelClicked(GButton source, GEvent event) { //_CODE_:colorWheel:510584:
-  colorWheel();
+  screen.screen = 2;
 } //_CODE_:colorWheel:510584:
 
 public void explorePalettesClicked(GButton source, GEvent event) { //_CODE_:explorePalettes:253406:
-  explorePalettes();
+  screen.screen = 6;
 } //_CODE_:explorePalettes:253406:
 
 public void exploreColorsClicked(GButton source, GEvent event) { //_CODE_:exploreColors:713295:
-  exploreColorsMain();
+  screen.screen = 4;
 } //_CODE_:exploreColors:713295:
 
 public void homeClicked(GButton source, GEvent event) { //_CODE_:home:807939:
-  home();
+  screen.screen = 1;
 } //_CODE_:home:807939:
 
 public void savedListClicked(GButton source, GEvent event) { //_CODE_:savedList:902677:
@@ -35,15 +35,15 @@ public void savedListClicked(GButton source, GEvent event) { //_CODE_:savedList:
 } //_CODE_:savedList:902677:
 
 public void redValueChanged(GSlider source, GEvent event) { //_CODE_:redValue:246119:
-  r = redValue.getValueI();
+  screen.r = redValue.getValueI();
 } //_CODE_:redValue:246119:
 
 public void greenValueChanged(GSlider source, GEvent event) { //_CODE_:greenValue:235878:
-  g = greenValue.getValueI();
+  screen.g = greenValue.getValueI();
 } //_CODE_:greenValue:235878:
 
 public void blueValueChanged(GSlider source, GEvent event) { //_CODE_:blueValue:633457:
-  b = blueValue.getValueI();
+  screen.b = blueValue.getValueI();
 } //_CODE_:blueValue:633457:
 
 
