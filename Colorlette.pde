@@ -1,6 +1,6 @@
 import g4p_controls.*;
 
-Screen screen = new Screen(0);
+Screen screen = new Screen(1);
 
 void setup() {
   createGUI();
