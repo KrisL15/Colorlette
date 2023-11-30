@@ -23,7 +23,7 @@ public void explorePalettesClicked(GButton source, GEvent event) { //_CODE_:expl
 } //_CODE_:explorePalettes:253406:
 
 public void exploreColorsClicked(GButton source, GEvent event) { //_CODE_:exploreColors:713295:
-  screen.screen = 4;
+  screen.screen = 10; // TURN BACK TO 4
 } //_CODE_:exploreColors:713295:
 
 public void homeClicked(GButton source, GEvent event) { //_CODE_:home:807939:
