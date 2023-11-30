@@ -50,9 +50,6 @@ class Screen {
   }
   
   void home() {
-    invisibleControls();
-    //textFont(brandFont);  //or upload an image?
-    textAlign(CENTER);
     image(colorletteLogo, 150, 40, 500, 180);
   }
   
@@ -134,15 +131,14 @@ class Screen {
     invisibleControls();
     //textFont(brandFont);
     textAlign(CENTER);
-    textSize(80);
+    textSize(50);
     text("My Palettes", width/2, 125);
   }
   
   void myPalettesSelected() {
-    invisibleControls();
     //textFont(brandFont);
     textAlign(CENTER);
-    textSize(80);
+    textSize(50);
     //text(myPalette, width/2, 125);
   }
   
