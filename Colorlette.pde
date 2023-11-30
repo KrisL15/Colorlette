@@ -25,4 +25,5 @@ void draw() {
   background(255);
   screen.callScreens();
   screen.navigatorBar();
+  invisibleControls();
 }

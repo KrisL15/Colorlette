@@ -15,87 +15,87 @@
  */
 
 public void exploreColorsClicked(GButton source, GEvent event) { //_CODE_:exploreColors:640186:
-  println("exploreColors - GButton >> GEvent." + event + " @ " + millis());
+  
 } //_CODE_:exploreColors:640186:
 
 public void colorWheelClicked(GButton source, GEvent event) { //_CODE_:colorWheel:298686:
-  println("colorWheel - GButton >> GEvent." + event + " @ " + millis());
+  
 } //_CODE_:colorWheel:298686:
 
 public void homeClicked(GButton source, GEvent event) { //_CODE_:home:930257:
-  println("home - GButton >> GEvent." + event + " @ " + millis());
+  
 } //_CODE_:home:930257:
 
 public void explorePalettesClicked(GButton source, GEvent event) { //_CODE_:explorePalettes:902454:
-  println("explorePalettes - GButton >> GEvent." + event + " @ " + millis());
+  
 } //_CODE_:explorePalettes:902454:
 
 public void myPalettesClicked(GButton source, GEvent event) { //_CODE_:myPalettes:900340:
-  println("myPalettes - GButton >> GEvent." + event + " @ " + millis());
+  
 } //_CODE_:myPalettes:900340:
 
 public void savePalettesClicked(GButton source, GEvent event) { //_CODE_:savePalettes:410609:
-  println("savePalettes - GButton >> GEvent." + event + " @ " + millis());
+  
 } //_CODE_:savePalettes:410609:
 
 public void backClicked(GButton source, GEvent event) { //_CODE_:back:308297:
-  println("button1 - GButton >> GEvent." + event + " @ " + millis());
+  
 } //_CODE_:back:308297:
 
 public void deleteClicked(GButton source, GEvent event) { //_CODE_:delete:600029:
-  println("delete - GButton >> GEvent." + event + " @ " + millis());
+  
 } //_CODE_:delete:600029:
 
 public void mergeClicked(GButton source, GEvent event) { //_CODE_:merge:607285:
-  println("merge - GButton >> GEvent." + event + " @ " + millis());
+  
 } //_CODE_:merge:607285:
 
 public void sliderMiniChanged(GSlider source, GEvent event) { //_CODE_:sliderMini:991682:
-  println("slider1 - GSlider >> GEvent." + event + " @ " + millis());
+  
 } //_CODE_:sliderMini:991682:
 
 public void mainSliderChanged(GSlider source, GEvent event) { //_CODE_:mainSlider:664683:
-  println("slider2 - GSlider >> GEvent." + event + " @ " + millis());
+  
 } //_CODE_:mainSlider:664683:
 
 public void seeSimilarClicked(GButton source, GEvent event) { //_CODE_:seeSimilar:278952:
-  println("seeSimilar - GButton >> GEvent." + event + " @ " + millis());
+  
 } //_CODE_:seeSimilar:278952:
 
 public void redValueChanged(GSlider source, GEvent event) { //_CODE_:redValue:714811:
-  println("redValue - GSlider >> GEvent." + event + " @ " + millis());
+  
 } //_CODE_:redValue:714811:
 
 public void greenValueChanged(GSlider source, GEvent event) { //_CODE_:greenValue:898672:
-  println("greenValue - GSlider >> GEvent." + event + " @ " + millis());
+  
 } //_CODE_:greenValue:898672:
 
 public void blueValueChanged(GSlider source, GEvent event) { //_CODE_:blueValue:837385:
-  println("blueValue - GSlider >> GEvent." + event + " @ " + millis());
+  
 } //_CODE_:blueValue:837385:
 
 public void colorWheelMainClicked(GButton source, GEvent event) { //_CODE_:colorWheelMain:964956:
-  println("button1 - GButton >> GEvent." + event + " @ " + millis());
+  
 } //_CODE_:colorWheelMain:964956:
 
 public void exploreColorsMainClicked(GButton source, GEvent event) { //_CODE_:exploreColorsMain:339268:
-  println("exploreColorsMain - GButton >> GEvent." + event + " @ " + millis());
+  
 } //_CODE_:exploreColorsMain:339268:
 
 public void explorePalettesMainClicked(GButton source, GEvent event) { //_CODE_:explorePalettesMain:548508:
-  println("explorePalettesMain - GButton >> GEvent." + event + " @ " + millis());
+  
 } //_CODE_:explorePalettesMain:548508:
 
 public void myPalettesMainClicked(GButton source, GEvent event) { //_CODE_:myPalettesMain:565413:
-  println("button1 - GButton >> GEvent." + event + " @ " + millis());
+  
 } //_CODE_:myPalettesMain:565413:
 
 public void colorTheoryMainClicked(GButton source, GEvent event) { //_CODE_:colorTheoryMain:978602:
-  println("colorTheoryMain - GButton >> GEvent." + event + " @ " + millis());
+  
 } //_CODE_:colorTheoryMain:978602:
 
 public void windowXClicked(GButton source, GEvent event) { //_CODE_:windowX:545388:
-  println("windowX - GButton >> GEvent." + event + " @ " + millis());
+  
 } //_CODE_:windowX:545388:
 
 
