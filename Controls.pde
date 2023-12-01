@@ -34,4 +34,12 @@ void invisibleControls() {
     greenValue.setVisible(false);
     blueValue.setVisible(false);
   }
+  
+  if (screen.screen <= 3 || screen.screen == 6) {
+    mainSlider.setVisible(false);
+  }
+  
+  else {
+    mainSlider.setVisible(true);
+  }
 }

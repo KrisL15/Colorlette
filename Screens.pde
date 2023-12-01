@@ -5,15 +5,12 @@ class Screen {
   PFont brandFont;  //upload brand font (for text and/or brand title)
   //brandFont = createFont("Cambria-Bold-48.vwl". 48);
 
-  int r, g, b, screen, x, y;
+  int screen, x, y;
   
   // CONSTRUCTOR
   Screen(int s) {
     //this.brand =   loadImage("Colorlette.png");
     //this.brandFont = createFont("Cambria-Bold-48.vwl". 48);
-    this.r = 0;
-    this.g = 0;
-    this.b = 0;
     this.screen = s;
     this.x = 0;
     this.y = 0;
@@ -42,43 +39,22 @@ class Screen {
     else if(this.screen == 10)
       colorTheory();
   }
-
+  
+  
   void navigatorBar() {
     fill(155, 98, 197);
     noStroke();
     rect(0,0 , 800,40);
   }
   
+  
   void home() {
     image(colorletteLogo, 150, 40, 500, 180);
   }
   
+  
   void colorWheel() {
-    //custom color square
-    fill(this.r, this.g, this.b);  //based on GUI slider values
-    rect(width*0.25,80 , width/2,270);
-    fill(150,150,150);
-    rect(width*0.25,350 , width/2,50);
-    //textFont(brandFont);
-    textSize(25);
-    textAlign(CENTER);
-    
-    int highestVal = this.r; // check which int value is the greatest - r, g, or b.
-    if(highestVal < this.g)
-      highestVal = this.g;
-    if(highestVal < this.b)
-      highestVal = this.b;
-    
-    if(highestVal == this.b && this.r < 100 && this.g < 100) // When there's mostly blue, the colour is dark so we need a white text font
-      fill(255);
-    else if(highestVal > 150) // If highest int value between r, g, and b is greater than 100, the color is light/bright so the hexcode text is printed in black.
-      fill(0);
-    else // The coloured sqaure is too dark so the hexcode text should be printed in white
-      fill(255);
-      
-    color squareCol = color(this.r, this.g, this.b);
-    text("#" + hex(squareCol, 6), width/2, 225);
-    
+    colorWheelSquare.drawSquare();
     
     //slider texts
     //textFont(brandFont);
@@ -88,30 +64,52 @@ class Screen {
     text("green", width/4, 500);
     text("blue", width/4, 550);
     
-    redValue.setVisible(true);
-    greenValue.setVisible(true);
-    blueValue.setVisible(true);
   }
   
   
   void exploreColorsMain() {
-    invisibleControls();
     //textFont(brandFont);
     textAlign(CENTER);
     textSize(50);
     text("Explore Colors!", width/2, 125);
+    
+    //colour options ("buttons")
+    color[] col = {#CE5858, #E39759, #EBC267, #4A661C, #415E8B, #7C008D, #9ABED1, #D2009F, #5F5F5F};
+    String[] colText = {"RED", "ORANGE", "YELLOW", "GREEN", "BLUE", "PURPLE", "PASTEL", "SATURATED", "MONOTONE"};
+    int buttonX = 50;
+    int buttonY = 200;
+    
+    int n = 0;
+    for(int i = 0; i < 3; i++){
+      for(int j = 0; j < 3; j++){
+        exploreColorsOptions(col[n], colText[n], buttonX, buttonY);
+        if(j < 2)
+          buttonX += 250;
+        else
+          buttonX = 50;
+        n++;
+      }
+      buttonY += 125;
+    }
+  }
+  
+  
+  void exploreColorsOptions(color col, String colText, int buttonX, int buttonY) {
+    fill(col);
+    rect(buttonX, buttonY, 200, 75);
+    fill(255);
+    textSize(24);
+    text(colText, buttonX+100, buttonY+45);
   }
   
   void exploreColors2() {
-    invisibleControls();
+    
   }
   
   void exploreColorsSelected() {
-    invisibleControls();
   }
   
   void explorePalettes() {
-    invisibleControls();
     //textFont(brandFont);
     textAlign(CENTER);
     textSize(50);
@@ -119,7 +117,6 @@ class Screen {
   }
   
   void explorePaletteSelected() {
-    invisibleControls();
     //textFont(brandFont);
     textAlign(CENTER);
     textSize(50);
@@ -128,7 +125,6 @@ class Screen {
   }
   
   void myPalettes() {
-    invisibleControls();
     //textFont(brandFont);
     textAlign(CENTER);
     textSize(50);

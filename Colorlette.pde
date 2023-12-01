@@ -9,15 +9,20 @@ import g4p_controls.*;
 //PImage ct7 = loadImage("ColorTheoryImg7.png");
 
 //PImage[] colorTheoryImg = new PImage[7];
-PImage colorletteLogo;
+PImage colorletteLogo, likedColor, notALikedColor;
+
+
 
 Screen screen = new Screen(1);
+ColoredSquare colorWheelSquare = new ColoredSquare(2, 237.5, 80, 325);
 
 void setup() {
   createGUI();
   size(800, 600);
   //colorTheoryImg = {ct1, ct2, ct3, ct4, ct5, ct6, ct7};
   colorletteLogo = loadImage("ColorletteLogo.png");
+  likedColor = loadImage("LikedColor.png");
+  notALikedColor = loadImage("NotALikedColor.png");
 }
 
 

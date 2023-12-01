@@ -63,15 +63,15 @@ public void seeSimilarClicked(GButton source, GEvent event) { //_CODE_:seeSimila
 } //_CODE_:seeSimilar:278952:
 
 public void redValueChanged(GSlider source, GEvent event) { //_CODE_:redValue:714811:
-  screen.r = redValue.getValueI();
+  colorWheelSquare.r = redValue.getValueI();
 } //_CODE_:redValue:714811:
 
 public void greenValueChanged(GSlider source, GEvent event) { //_CODE_:greenValue:898672:
-  screen.g = greenValue.getValueI();
+  colorWheelSquare.g = greenValue.getValueI();
 } //_CODE_:greenValue:898672:
 
 public void blueValueChanged(GSlider source, GEvent event) { //_CODE_:blueValue:837385:
-  screen.b = blueValue.getValueI();
+  colorWheelSquare.b = blueValue.getValueI();
 } //_CODE_:blueValue:837385:
 
 public void colorWheelMainClicked(GButton source, GEvent event) { //_CODE_:colorWheelMain:964956:
