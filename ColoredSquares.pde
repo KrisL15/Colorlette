@@ -28,7 +28,7 @@ class ColoredSquare {
     square(this.x, this.y, size);
     
     //bar across the bottom of the square
-    fill(#5F5F5F);
+    fill(#9F9F9F);
     rect(this.x, this.y+size-(size/7), size, size/7);
     
     if(liked)
