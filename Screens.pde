@@ -71,6 +71,7 @@ class Screen {
     //textFont(brandFont);
     textAlign(CENTER);
     textSize(50);
+    fill(155, 98, 197);
     text("Explore Colors!", width/2, 125);
     
     //colour options ("buttons")
@@ -96,13 +97,16 @@ class Screen {
   
   void exploreColorsOptions(color col, String colText, int buttonX, int buttonY) {
     fill(col);
-    rect(buttonX, buttonY, 200, 75);
+    rect(buttonX, buttonY, 200, 75, 10, 10, 10, 10);
     fill(255);
     textSize(24);
     text(colText, buttonX+100, buttonY+45);
   }
   
   void exploreColors2() {
+    textSize(50);
+    fill(155, 98, 197);
+    text(exploreColorType, width/2, 125);
     
   }
   
@@ -113,6 +117,7 @@ class Screen {
     //textFont(brandFont);
     textAlign(CENTER);
     textSize(50);
+    fill(155, 98, 197);
     text("Explore Our" + "\n" + "Favorite Color Palettes!", width/2, 125);
   }
   
@@ -120,6 +125,7 @@ class Screen {
     //textFont(brandFont);
     textAlign(CENTER);
     textSize(50);
+    fill(155, 98, 197);
     //text(colorPalette, width/2, 150);
     
   }
@@ -128,6 +134,7 @@ class Screen {
     //textFont(brandFont);
     textAlign(CENTER);
     textSize(50);
+    fill(155, 98, 197);
     text("My Palettes", width/2, 125);
   }
   
@@ -135,6 +142,7 @@ class Screen {
     //textFont(brandFont);
     textAlign(CENTER);
     textSize(50);
+    fill(155, 98, 197);
     //text(myPalette, width/2, 125);
   }
   

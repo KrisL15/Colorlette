@@ -10,6 +10,7 @@ import g4p_controls.*;
 
 //PImage[] colorTheoryImg = new PImage[7];
 PImage colorletteLogo, likedColor, notALikedColor;
+String exploreColorType;
 
 
 

@@ -21,8 +21,8 @@ class ColoredSquare {
   //METHODS
   void drawSquare() {  
     //textFont(brandFont);
-    textSize(25);
     textAlign(CENTER);
+    textSize(size/13);
     
     fill(getHexCode());
     square(this.x, this.y, size);
@@ -32,9 +32,9 @@ class ColoredSquare {
     rect(this.x, this.y+size-(size/7), size, size/7);
     
     if(liked)
-      image(likedColor, this.x, this.y+size-(size/7), 100, size/7);
+      image(likedColor, this.x, this.y+size-(size/7), size/7*2.2, size/7);
     else
-      image(notALikedColor, this.x, this.y+size-(size/7), 100, size/7);
+      image(notALikedColor, this.x, this.y+size-(size/7), size/7*2.2, size/7);
     
     
     int highestVal = this.r; // check which int value is the greatest - r, g, or b.
@@ -50,7 +50,7 @@ class ColoredSquare {
     else // The coloured sqaure is too dark so the hexcode text should be printed in white
       fill(255);
     
-    text("#" + hex(getHexCode(), 6), width/2, 225);
+    text("#" + hex(getHexCode(), 6), this.x+size/2, this.x+size*(6/13));
   } 
 
   color getHexCode() {
