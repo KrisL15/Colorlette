@@ -39,7 +39,7 @@ public void savePalettesClicked(GButton source, GEvent event) { //_CODE_:savePal
 } //_CODE_:savePalettes:410609:
 
 public void backClicked(GButton source, GEvent event) { //_CODE_:back:308297:
-  
+  screen.screen -= 1;
 } //_CODE_:back:308297:
 
 public void deleteClicked(GButton source, GEvent event) { //_CODE_:delete:600029:
@@ -55,7 +55,7 @@ public void sliderMiniChanged(GSlider source, GEvent event) { //_CODE_:sliderMin
 } //_CODE_:sliderMini:991682:
 
 public void mainSliderChanged(GSlider source, GEvent event) { //_CODE_:mainSlider:664683:
-  
+  screen.y = 0-19*(mainSlider.getValueI());
 } //_CODE_:mainSlider:664683:
 
 public void seeSimilarClicked(GButton source, GEvent event) { //_CODE_:seeSimilar:278952:
