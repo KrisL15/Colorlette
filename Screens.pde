@@ -131,7 +131,7 @@ class Screen {
     text("Explore Our \nFavorite Color Palettes!", width/2, 125);
     
     //colour options ("buttons")
-    color[] col = {#CE5858, #E39759, #EBC267, #4A661C, #415E8B, #7C008D, #9ABED1, #3B0000, #5F5F5F};
+    color[] col = {#7f89be, #d9542c, #dfb486, #bf560f, #34877c, #103630, #d78850, #947dbc, #494949};
     String[] colText = {"Winter Wonderland", "Vivid Spring", "Pastel Summer", "Pumpkin Spice", "Northern Lights", "Enchanted Forest", "Sunset by the Beach", "Lavender Landscape", "Monochromatic"};
     int buttonX = 12;
     int buttonY = 230;
