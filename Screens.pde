@@ -77,7 +77,7 @@ class Screen {
     //colour options ("buttons")
     color[] col = {#CE5858, #E39759, #EBC267, #4A661C, #415E8B, #7C008D, #9ABED1, #3B0000, #5F5F5F};
     String[] colText = {"RED", "ORANGE", "YELLOW", "GREEN", "BLUE", "PURPLE", "PASTEL", "DULL", "MONOTONE"};
-    int buttonX = 50;
+    int buttonX = 12;
     int buttonY = 200;
     
     int n = 0;
@@ -85,9 +85,9 @@ class Screen {
       for(int j = 0; j < 3; j++){
         exploreColorsOptions(col[n], colText[n], buttonX, buttonY);
         if(j < 2)
-          buttonX += 250;
+          buttonX += 262;
         else
-          buttonX = 50;
+          buttonX = 12;
         n++;
       }
       buttonY += 125;
@@ -97,12 +97,11 @@ class Screen {
   
   void exploreColorsOptions(color col, String colText, int buttonX, int buttonY) {
     fill(col);
-    rect(buttonX, buttonY, 200, 75, 10, 10, 10, 10);
+    rect(buttonX, buttonY, 250, 100, 10, 10, 10, 10);
     fill(255);
     textSize(24);
-    text(colText, buttonX+100, buttonY+45);
+    text(colText, buttonX+125, buttonY+55);
     mainSlider.setLimits(0, 0.0, 100.0);
-    
   }
   
   void exploreColors2() {
@@ -129,7 +128,26 @@ class Screen {
     textAlign(CENTER);
     textSize(50);
     fill(155, 98, 197);
-    text("Explore Our" + "\n" + "Favorite Color Palettes!", width/2, 125);
+    text("Explore Our \nFavorite Color Palettes!", width/2, 125);
+    
+    //colour options ("buttons")
+    color[] col = {#CE5858, #E39759, #EBC267, #4A661C, #415E8B, #7C008D, #9ABED1, #3B0000, #5F5F5F};
+    String[] colText = {"Winter Wonderland", "Vivid Spring", "Pastel Summer", "Pumpkin Spice", "Northern Lights", "Enchanted Forest", "Sunset by the Beach", "Lavender Landscape", "Monochromatic"};
+    int buttonX = 12;
+    int buttonY = 230;
+    
+    int n = 0;
+    for(int i = 0; i < 3; i++){
+      for(int j = 0; j < 3; j++){
+        exploreColorsOptions(col[n], colText[n], buttonX, buttonY);
+        if(j < 2)
+          buttonX += 262;
+        else
+          buttonX = 12;
+        n++;
+      }
+      buttonY += 125;
+    }
   }
   
   void explorePaletteSelected() {

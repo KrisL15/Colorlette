@@ -2,11 +2,13 @@ import g4p_controls.*;
 
 PImage ct1, ct2, ct3, ct4, ct5, ct6, ct7, colorletteLogo, likedColor, notALikedColor;
 String exploreColorType = "NONE";
+String explorePreMadePalette = "NONE";
 
 
 Screen screen = new Screen(1);
 ColoredSquare colorWheelSquare = new ColoredSquare(2, 237.5, 80, 325);
 ColoredSquare[][] browseColoredSquares = new ColoredSquare[10][3];
+ExploreSpecificColor[] exploreSpecificCol = new ExploreSpecificColor[17];
 ArrayList<String> likedColors = new ArrayList<String>();
 
 void setup() {
