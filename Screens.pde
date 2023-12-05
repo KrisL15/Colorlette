@@ -75,8 +75,8 @@ class Screen {
     text("Explore Colors!", width/2, 125);
     
     //colour options ("buttons")
-    color[] col = {#CE5858, #E39759, #EBC267, #4A661C, #415E8B, #7C008D, #9ABED1, #D2009F, #5F5F5F};
-    String[] colText = {"RED", "ORANGE", "YELLOW", "GREEN", "BLUE", "PURPLE", "PASTEL", "SATURATED", "MONOTONE"};
+    color[] col = {#CE5858, #E39759, #EBC267, #4A661C, #415E8B, #7C008D, #9ABED1, #3B0000, #5F5F5F};
+    String[] colText = {"RED", "ORANGE", "YELLOW", "GREEN", "BLUE", "PURPLE", "PASTEL", "DULL", "MONOTONE"};
     int buttonX = 50;
     int buttonY = 200;
     
@@ -101,15 +101,23 @@ class Screen {
     fill(255);
     textSize(24);
     text(colText, buttonX+100, buttonY+45);
+    mainSlider.setLimits(0, 0.0, 100.0);
     
   }
   
   void exploreColors2() {
     textSize(50);
     fill(155, 98, 197);
-    text(exploreColorType, width/2, 125);
-    for(int i = 0; i<12; i ++) {
-     coloredSquares[i].drawSquare();
+    if(browseColoredSquares[1][1].ogY > -50)
+      text(exploreColorType, width/2, 125);
+    else {
+      fill(255);
+      rect(100, 80, 600, 50);
+    }
+    for(int i = 0; i < 10; i ++) {
+      for(int j = 0; j < 3; j++){
+        browseColoredSquares[i][j].drawSquare();
+      }
     }
   }
   

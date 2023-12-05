@@ -1,3 +1,5 @@
+float sP;
+
 void invisibleControls() {
   sliderMini.setVisible(false);
   windowX.setVisible(false);
@@ -27,12 +29,14 @@ void invisibleControls() {
     redValue.setVisible(true);
     greenValue.setVisible(true);
     blueValue.setVisible(true);
+    seeSimilar.setVisible(true);
   }
   
   else {
     redValue.setVisible(false);
     greenValue.setVisible(false);
     blueValue.setVisible(false);
+    seeSimilar.setVisible(false);
   }
   
   if (screen.screen <= 3 || screen.screen == 6) { // screens without slider bars
@@ -40,6 +44,7 @@ void invisibleControls() {
   }
   
   else {
+    sP = 0.0;
     mainSlider.setVisible(true);
   }
   

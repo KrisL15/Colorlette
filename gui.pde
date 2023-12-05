@@ -13,33 +13,51 @@
  * Do not rename this tab!
  * =========================================================
  */
+ 
+int previousScreen = 0;
+int currentScreen = 0;
+
+void checkScreen() {
+  if(previousScreen != currentScreen) {
+    mainSlider.setLimits(0, 0.0, 100.0);
+    previousScreen = currentScreen;
+  }
+}
 
 public void exploreColorsClicked(GButton source, GEvent event) { //_CODE_:exploreColors:640186:
   screen.screen = 3;
+  previousScreen = screen.screen;
 } //_CODE_:exploreColors:640186:
 
 public void colorWheelClicked(GButton source, GEvent event) { //_CODE_:colorWheel:298686:
   screen.screen = 2;
+  previousScreen = screen.screen;
 } //_CODE_:colorWheel:298686:
 
 public void homeClicked(GButton source, GEvent event) { //_CODE_:home:930257:
   screen.screen = 1;
+  previousScreen = screen.screen;
 } //_CODE_:home:930257:
 
 public void explorePalettesClicked(GButton source, GEvent event) { //_CODE_:explorePalettes:902454:
   screen.screen = 6;
+  previousScreen = screen.screen;
 } //_CODE_:explorePalettes:902454:
 
 public void myPalettesClicked(GButton source, GEvent event) { //_CODE_:myPalettes:900340:
   screen.screen = 8;
+  previousScreen = screen.screen;
+  checkScreen();
 } //_CODE_:myPalettes:900340:
 
 public void savePalettesClicked(GButton source, GEvent event) { //_CODE_:savePalettes:410609:
   screen.screen = 7;
+  checkScreen();
 } //_CODE_:savePalettes:410609:
 
 public void backClicked(GButton source, GEvent event) { //_CODE_:back:308297:
   screen.screen -= 1;
+  previousScreen = screen.screen;
 } //_CODE_:back:308297:
 
 public void deleteClicked(GButton source, GEvent event) { //_CODE_:delete:600029:
@@ -55,11 +73,17 @@ public void sliderMiniChanged(GSlider source, GEvent event) { //_CODE_:sliderMin
 } //_CODE_:sliderMini:991682:
 
 public void mainSliderChanged(GSlider source, GEvent event) { //_CODE_:mainSlider:664683:
-  screen.y = 0-19*(mainSlider.getValueI());
+  screen.y = 0-19*mainSlider.getValueI();
+  for(int i = 0; i < 10; i ++) {
+    for(int j = 0; j < 3; j++) {
+      browseColoredSquares[i][j].ogY = 0-20*mainSlider.getValueI();
+    }
+  }
 } //_CODE_:mainSlider:664683:
 
 public void seeSimilarClicked(GButton source, GEvent event) { //_CODE_:seeSimilar:278952:
   screen.screen = 5;
+  previousScreen = screen.screen;
 } //_CODE_:seeSimilar:278952:
 
 public void redValueChanged(GSlider source, GEvent event) { //_CODE_:redValue:714811:
@@ -76,22 +100,27 @@ public void blueValueChanged(GSlider source, GEvent event) { //_CODE_:blueValue:
 
 public void colorWheelMainClicked(GButton source, GEvent event) { //_CODE_:colorWheelMain:964956:
   screen.screen = 2;
+  previousScreen = screen.screen;
 } //_CODE_:colorWheelMain:964956:
 
 public void exploreColorsMainClicked(GButton source, GEvent event) { //_CODE_:exploreColorsMain:339268:
   screen.screen = 3;
+  previousScreen = screen.screen;
 } //_CODE_:exploreColorsMain:339268:
 
 public void explorePalettesMainClicked(GButton source, GEvent event) { //_CODE_:explorePalettesMain:548508:
   screen.screen = 6;
+  previousScreen = screen.screen;
 } //_CODE_:explorePalettesMain:548508:
 
 public void myPalettesMainClicked(GButton source, GEvent event) { //_CODE_:myPalettesMain:565413:
   screen.screen = 8;
+  checkScreen();
 } //_CODE_:myPalettesMain:565413:
 
 public void colorTheoryMainClicked(GButton source, GEvent event) { //_CODE_:colorTheoryMain:978602:
   screen.screen = 10;
+  checkScreen();
 } //_CODE_:colorTheoryMain:978602:
 
 public void windowXClicked(GButton source, GEvent event) { //_CODE_:windowX:545388:
@@ -150,9 +179,9 @@ public void createGUI(){
   sliderMini.setLocalColorScheme(GCScheme.PURPLE_SCHEME);
   sliderMini.setOpaque(false);
   sliderMini.addEventHandler(this, "sliderMiniChanged");
-  mainSlider = new GSlider(this, 800, 40, 560, 10, 10.0);
+  mainSlider = new GSlider(this, 800, 40, 560, 10, 60.0);
   mainSlider.setRotation(PI/2, GControlMode.CORNER);
-  mainSlider.setLimits(0.0, 0.0, 100.0);
+  mainSlider.setLimits(0.0, 0.0, 100.0);  //(starting point, min value, max value)
   mainSlider.setNumberFormat(G4P.DECIMAL, 0);
   mainSlider.setLocalColorScheme(GCScheme.PURPLE_SCHEME);
   mainSlider.setOpaque(false);
