@@ -156,34 +156,145 @@ class Screen {
     textSize(50);
     fill(155, 98, 197);
     text(explorePreMadePalette, width/2, 125);
+
+    int n = 0;
+
     if(explorePreMadePalette == "Winter Wonderland"){
-      
+      image(winterWonderland, 35, 180, 280, 280);
+      for(int i=0; i<2; i++) {
+        for(int j=0; j<3; j++) {
+          preMadePaletteSquares[i][j].r = winterW[n];
+          preMadePaletteSquares[i][j].g = winterW[n+1];
+          preMadePaletteSquares[i][j].b = winterW[n+2];
+
+          preMadePaletteSquares[i][j].drawSquare();
+
+          n += 3;
+        }
+      }
     }
+
     else if(explorePreMadePalette == "Vivid Spring"){
-    
+      image(vividSpring, 35, 180, 280, 280);
+      for(int i=0; i<2; i++) {
+        for(int j=0; j<3; j++) {
+          preMadePaletteSquares[i][j].r = vSpring[n];
+          preMadePaletteSquares[i][j].g = vSpring[n+1];
+          preMadePaletteSquares[i][j].b = vSpring[n+2];
+
+          preMadePaletteSquares[i][j].drawSquare();
+
+          n += 3;
+        }
+      }
     }
-    else if(explorePreMadePalette == "Pastel Summer"){
-    
+
+    if(explorePreMadePalette == "Pastel Summer"){
+      image(pastelSummer, 35, 180, 280, 280);
+      for(int i=0; i<2; i++) {
+        for(int j=0; j<3; j++) {
+          preMadePaletteSquares[i][j].r = pSummer[n];
+          preMadePaletteSquares[i][j].g = pSummer[n+1];
+          preMadePaletteSquares[i][j].b = pSummer[n+2];
+
+          preMadePaletteSquares[i][j].drawSquare();
+
+          n += 3;
+        }
+      }
     }
+
     else if(explorePreMadePalette == "Pumpkin Spice"){
-    
+      image(pumpkinSpice, 35, 180, 280, 280);
+      for(int i=0; i<2; i++) {
+        for(int j=0; j<3; j++) {
+          preMadePaletteSquares[i][j].r = pumpkinS[n];
+          preMadePaletteSquares[i][j].g = pumpkinS[n+1];
+          preMadePaletteSquares[i][j].b = pumpkinS[n+2];
+
+          preMadePaletteSquares[i][j].drawSquare();
+
+          n += 3;
+        }
+      }
     }
+
     else if(explorePreMadePalette == "Northern Lights"){
-    
+      image(northernLights, 35, 180, 280, 280);
+      for(int i=0; i<2; i++) {
+        for(int j=0; j<3; j++) {
+          preMadePaletteSquares[i][j].r = nLights[n];
+          preMadePaletteSquares[i][j].g = nLights[n+1];
+          preMadePaletteSquares[i][j].b = nLights[n+2];
+
+          preMadePaletteSquares[i][j].drawSquare();
+
+          n += 3;
+        }
+      }
     }
+
     else if(explorePreMadePalette == "Enchanted Forest"){
-    
+      image(enchantedForest, 35, 180, 280, 280);
+      for(int i=0; i<2; i++) {
+        for(int j=0; j<3; j++) {
+          preMadePaletteSquares[i][j].r = eForest[n];
+          preMadePaletteSquares[i][j].g = eForest[n+1];
+          preMadePaletteSquares[i][j].b = eForest[n+2];
+
+          preMadePaletteSquares[i][j].drawSquare();
+
+          n += 3;
+        }
+      }
     }
+
     else if(explorePreMadePalette == "Sunset by the Beach"){
-    
+      image(sunsetByTheBeach, 35, 180, 280, 280);
+      for(int i=0; i<2; i++) {
+        for(int j=0; j<3; j++) {
+          preMadePaletteSquares[i][j].r = sBeach[n];
+          preMadePaletteSquares[i][j].g = sBeach[n+1];
+          preMadePaletteSquares[i][j].b = sBeach[n+2];
+
+          preMadePaletteSquares[i][j].drawSquare();
+
+          n += 3;
+        }
+      }
     }
+
     else if(explorePreMadePalette == "Lavender Landscape"){
-    
+      image(lavenderLandscape, 35, 180, 280, 280);
+      for(int i=0; i<2; i++) {
+        for(int j=0; j<3; j++) {
+          preMadePaletteSquares[i][j].r = lavenderL[n];
+          preMadePaletteSquares[i][j].g = lavenderL[n+1];
+          preMadePaletteSquares[i][j].b = lavenderL[n+2];
+
+          preMadePaletteSquares[i][j].drawSquare();
+
+          n += 3;
+        }
+      }
     }
+
     else if(explorePreMadePalette == "Monochromatic"){
-    
+      image(monochromatic, 35, 180, 280, 280);
+      for(int i=0; i<2; i++) {
+        for(int j=0; j<3; j++) {
+          preMadePaletteSquares[i][j].r = mono[n];
+          preMadePaletteSquares[i][j].g = mono[n+1];
+          preMadePaletteSquares[i][j].b = mono[n+2];
+
+          preMadePaletteSquares[i][j].drawSquare();
+
+          n += 3;
+        }
+      }
     }
   }
+
   
   void myPalettes() {
     //textFont(brandFont);

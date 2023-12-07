@@ -32,7 +32,7 @@ void invisibleControls() {
     seeSimilar.setVisible(false);
   }
   
-  if (screen.screen <= 3 || screen.screen == 6) { // screens without slider bars
+  if (screen.screen <= 3 || screen.screen == 6 || screen.screen == 7) { // screens without slider bars
     mainSlider.setVisible(false);
   }
   
@@ -55,11 +55,9 @@ void invisibleControls() {
   }
   
   if (saveClicked){
-    sliderMini.setVisible(true);
     windowX.setVisible(true);
   }
   else {
-    sliderMini.setVisible(false);
     windowX.setVisible(false);
   }
 }

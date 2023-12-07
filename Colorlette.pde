@@ -5,7 +5,9 @@ String exploreColorType = "NONE";
 String explorePreMadePalette = "NONE";
 
 boolean saveClicked = false; // when the save button is clicked and the pop-up appears, it changes the mouse clicking options (variable mostly used in mouseActions, controls and saveColorPopUp)
-float popupY = 200; // the y value of the popup. Changed by the mini slider to scroll
+boolean newPalette = false; // if the user wants to create a new palette
+String paletteName = ""; // new palette name
+boolean palettesMaxed = false; // up to 6 palettes can be made at once. This variable tracks whether the max # of palettes have been reached.
 
 Screen screen = new Screen(1);
 
@@ -16,18 +18,20 @@ ColoredSquare[][] preMadePaletteSquares = new ColoredSquare[2][3];
 ExploreSpecificColor[] exploreSpecificCol = new ExploreSpecificColor[17];
 
 ArrayList<String> likedColors = new ArrayList<String>();
-ArrayList<String> palettes = new ArrayList<String>();
+ArrayList<MyPalette> palettes = new ArrayList<MyPalette>();
 
 // pre-made color palettes
-color winterW[] = {#7f89be, 615971, #35cfc4, #b0a5b3, #342632, #f8decb};
-color vSpring[] = {#649755, #74722f, #f2cda0, #e8a837, #d9542c, #713015};
-color pSummer[] = {#93b6af, #cbd6d4, #eadbdd, #dfb486, #cf97a6, #8a6a56};
-color pumpkinS[] = {#cfc3b5, #e0994e, #bf560f, #281a10, #643f21, #c18a59};
-color nLights[] = {#2c4456, #1b262f, #43625e, #34877c, #89dca9, #dafad4};
-color eForest[] = {#051a19, #dfcaa7, #103630, #4f595a, #919394, #365520};
-color sBeach[] = {#302b2c, #479789, #cfb890, #fbeca7, #7f5f4c, #d78850};
-color lavenderL[] = {#f19f9a, #947dbc, #eed3ce, #2e1d1d, #592b51, #8b4a39};
-color mono[] = {#b1b1b1, #ebebeb, #222222, #494949, #757575, #f9f9f9};
+// int paletteTitle[] = {r1,g1,b1 , r2,g2,b2 , r3,g3,b3};
+int winterW[] = {127,137,190  ,  97,89,113  ,  53,207,196  ,  176,165,179  ,  52,38,50  ,  248,222,203};
+int vSpring[] = {100,151,85  ,  116,114,47  ,  242,205,160  ,  232,168,55  ,  217,84,44  ,  113,48,21};
+int pSummer[] = {147,182,175  ,  203,214,212  ,  234,219,221  ,  223,180,134  ,  207,151,166  ,  138,106,86};
+int pumpkinS[] = {207,195,181  ,  224,153,78  ,  191,86,15  ,  40,26,16  ,  100,63,33  ,  193,138,89};
+int nLights[] = {44,68,86  ,  27,38,47  ,  67,98,94  ,  52,135,124  ,  137,220,169  ,  218,250,212};
+color eForest[] = {5,26,25  ,  223,202,167  ,  16,54,48  ,  79,89,90  ,  145,147,148  ,  54,85,32};
+color sBeach[] = {48,43,44  ,  71,151,137  ,  207,184,144  ,  251,236,167  , 127,95,76  ,  215,136,80};
+color lavenderL[] = {241,159,154  ,  148,125,188  ,  238,211,206  ,  46,29,29  ,  89,43,81  ,  139,74,57};
+color mono[] = {177,177,177  ,  235, 235, 235  ,  34,34,34  ,  73,73,73  ,  117,117,117  ,  249,249,249};
+
 
 void setup() {
   createGUI();
@@ -42,7 +46,18 @@ void setup() {
     y += 240;
     x = 60;
   }
-  
+
+  x = 350;
+  y = 180;
+  for(int i = 0; i < 2; i++) {
+    for(int j = 0; j < 3; j++) {
+      preMadePaletteSquares[i][j] = new ColoredSquare(7, x, y, 125);
+      x+=145;
+    }
+    y += 155;
+    x = 350;
+  }
+
   // Uploading the color theory images, logo, and like buttons
   ct1 = loadImage("ColorTheoryImg1.png");
   ct2 = loadImage("ColorTheoryImg2.png");

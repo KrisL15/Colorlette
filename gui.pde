@@ -18,9 +18,9 @@ int previousScreen = 0;
 
 void resetScreen() {
   saveClicked = false;
+  palettesMaxed = false;
   //reset every y value to 0 so that nothing on the new selected page has been scrolled yet
   mainSlider.setLimits(0, 0.0, 100.0);
-  sliderMini.setLimits(0, 0.0, 100.0);
   screen.y = 0;
   for(int i = 0; i < 10; i ++) {
     for(int j = 0; j < 3; j++) {
@@ -82,10 +82,6 @@ public void mergeClicked(GButton source, GEvent event) { //_CODE_:merge:607285:
   
 } //_CODE_:merge:607285:
 
-public void sliderMiniChanged(GSlider source, GEvent event) { //_CODE_:sliderMini:991682:
-  popupY = 200-sliderMini.getValueI();
-} //_CODE_:sliderMini:991682:
-
 public void mainSliderChanged(GSlider source, GEvent event) { //_CODE_:mainSlider:664683:
   screen.y = 0-19*mainSlider.getValueI();
   for(int i = 0; i < 10; i ++) {
@@ -145,6 +141,7 @@ public void colorTheoryMainClicked(GButton source, GEvent event) { //_CODE_:colo
 
 public void windowXClicked(GButton source, GEvent event) { //_CODE_:windowX:545388:
   saveClicked = false;
+  newPalette = false;
   previousScreen = screen.screen;
 } //_CODE_:windowX:545388:
 
@@ -177,7 +174,7 @@ public void createGUI(){
   myPalettes.setIcon("Screenshot 2023-11-25 170900.png", 1, GAlign.EAST, GAlign.RIGHT, GAlign.MIDDLE);
   myPalettes.setLocalColorScheme(GCScheme.PURPLE_SCHEME);
   myPalettes.addEventHandler(this, "myPalettesClicked");
-  savePalettes = new GButton(this, 130, 475, 195, 35);
+  savePalettes = new GButton(this, 75, 480, 200, 35);
   savePalettes.setIcon("Save Palettes.png", 1, GAlign.EAST, GAlign.RIGHT, GAlign.MIDDLE);
   savePalettes.setLocalColorScheme(GCScheme.PURPLE_SCHEME);
   savePalettes.addEventHandler(this, "savePalettesClicked");
@@ -193,13 +190,6 @@ public void createGUI(){
   merge.setIcon("Merge.png", 1, GAlign.EAST, GAlign.RIGHT, GAlign.MIDDLE);
   merge.setLocalColorScheme(GCScheme.PURPLE_SCHEME);
   merge.addEventHandler(this, "mergeClicked");
-  sliderMini = new GSlider(this, 550, 200, 200, 10, 40.0);
-  sliderMini.setRotation(PI/2, GControlMode.CORNER);
-  sliderMini.setLimits(0.0, 0.0, 100.0);
-  sliderMini.setNumberFormat(G4P.DECIMAL, 2);
-  sliderMini.setLocalColorScheme(GCScheme.PURPLE_SCHEME);
-  sliderMini.setOpaque(false);
-  sliderMini.addEventHandler(this, "sliderMiniChanged");
   mainSlider = new GSlider(this, 800, 40, 560, 10, 60.0);
   mainSlider.setRotation(PI/2, GControlMode.CORNER);
   mainSlider.setLimits(0.0, 0.0, 100.0);  //(starting point, min value, max value)
@@ -248,7 +238,7 @@ public void createGUI(){
   colorTheoryMain.setIcon("Color Theory Main (1).png", 1, GAlign.EAST, GAlign.RIGHT, GAlign.MIDDLE);
   colorTheoryMain.setLocalColorScheme(GCScheme.PURPLE_SCHEME);
   colorTheoryMain.addEventHandler(this, "colorTheoryMainClicked");
-  windowX = new GButton(this, 500, 203, 38, 40);
+  windowX = new GButton(this, 510, 203, 38, 40);
   windowX.setIcon("Window X.png", 1, GAlign.EAST, GAlign.RIGHT, GAlign.MIDDLE);
   windowX.setLocalColorScheme(GCScheme.PURPLE_SCHEME);
   windowX.addEventHandler(this, "windowXClicked");
@@ -264,8 +254,7 @@ GButton myPalettes;
 GButton savePalettes; 
 GButton back; 
 GButton delete; 
-GButton merge; 
-GSlider sliderMini; 
+GButton merge;
 GSlider mainSlider; 
 GButton seeSimilar; 
 GSlider redValue; 

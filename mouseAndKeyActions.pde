@@ -1,12 +1,28 @@
 void mouseReleased() {
   
   if(saveClicked){
+    if(newPalette){ // creating a new palette
+      if(mouseX >= 485 && mouseX <= 535 && mouseY >= 330 && mouseY <= 355){ // within the save button
+        palettes.add(new MyPalette(paletteName));
+        paletteName = "";
+        newPalette = false;
+      }
+    }
     
+    else { //adding to a palette
+      if(mouseX >= 250 && mouseX <= 550){
+        if(mouseY >= 260 && mouseY <= 280){ // within the create new palette section
+          if(palettes.size() < 6) // max # palettes at once is 6
+            newPalette = true;
+          else
+            palettesMaxed = true;
+            
+        //else if(mouseY >= 255 && mouseY <= 275){ // within the create new palette section
     
-    
-    
-    
-    
+        //}
+        }
+      }
+    }
   }
   
   
@@ -176,4 +192,28 @@ void mouseReleased() {
     }
   }
   
+}
+
+
+int characterLimit = 20;
+
+void keyPressed() {
+  if(newPalette == true){
+    if (key == BACKSPACE) {
+      int L = paletteName.length();
+      if (L > 0) {
+        paletteName = paletteName.substring(0, L - 1);
+      }
+    } 
+    else if (key != ENTER) {
+      if (paletteName.length() < characterLimit) {
+        paletteName = paletteName + key;
+      }
+    }
+    else if (key == ENTER) {
+      palettes.add(new MyPalette(paletteName));
+      paletteName = "";
+      newPalette = false;
+    }
+  }
 }
