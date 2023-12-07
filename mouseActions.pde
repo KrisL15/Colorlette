@@ -1,5 +1,15 @@
 void mouseReleased() {
   
+  if(saveClicked){
+    
+    
+    
+    
+    
+    
+  }
+  
+  
   if(screen.screen == 2){ // Color wheel screen
     if(saveClicked == false){
       // if mouse is over coloredSquare
@@ -18,7 +28,7 @@ void mouseReleased() {
           
         // else if mouse is over the save button, run the save function
         else if (mouseX >= colorWheelSquare.x + colorWheelSquare.size/7*1.1 && mouseX <= colorWheelSquare.x + colorWheelSquare.size/7*2.2 && mouseY >= colorWheelSquare.y + colorWheelSquare.size - (colorWheelSquare.size/7)) {
-          saveColor();
+          saveClicked = true;
         
         }
         // else, take you to view the color + complementary/similar colors

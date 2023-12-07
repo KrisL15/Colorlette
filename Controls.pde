@@ -1,7 +1,4 @@
 void invisibleControls() {
-  sliderMini.setVisible(false);
-  windowX.setVisible(false);
-  savePalettes.setVisible(false);
   merge.setVisible(false);
   delete.setVisible(false);
   
@@ -52,8 +49,19 @@ void invisibleControls() {
   
   if (screen.screen == 7){
     back.setVisible(true);
+    savePalettes.setVisible(true);
   }
   else {
     back.setVisible(false);
+    savePalettes.setVisible(false);
+  }
+  
+  if (saveClicked){
+    sliderMini.setVisible(true);
+    windowX.setVisible(true);
+  }
+  else {
+    sliderMini.setVisible(false);
+    windowX.setVisible(false);
   }
 }
