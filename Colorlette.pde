@@ -16,6 +16,17 @@ ExploreSpecificColor[] exploreSpecificCol = new ExploreSpecificColor[17];
 ArrayList<String> likedColors = new ArrayList<String>();
 ArrayList<String> palettes = new ArrayList<String>();
 
+// pre-made color palettes
+color winterW[] = {#7f89be, 615971, #35cfc4, #b0a5b3, #342632, #f8decb};
+color vSpring[] = {#649755, #74722f, #f2cda0, #e8a837, #d9542c, #713015};
+color pSummer[] = {#93b6af, #cbd6d4, #eadbdd, #dfb486, #cf97a6, #8a6a56};
+color pumpkinS[] = {#cfc3b5, #e0994e, #bf560f, #281a10, #643f21, #c18a59};
+color nLights[] = {#2c4456, #1b262f, #43625e, #34877c, #89dca9, #dafad4};
+color eForest[] = {#051a19, #dfcaa7, #103630, #4f595a, #919394, #365520};
+color sBeach[] = {#302b2c, #479789, #cfb890, #fbeca7, #7f5f4c, #d78850};
+color lavenderL[] = {#f19f9a, #947dbc, #eed3ce, #2e1d1d, #592b51, #8b4a39};
+color mono[] = {#b1b1b1, #ebebeb, #222222, #494949, #757575, #f9f9f9};
+
 void setup() {
   createGUI();
   size(800, 600);
@@ -29,9 +40,6 @@ void setup() {
     y += 240;
     x = 60;
   }
-  
-  //Creating the pre-made Color Palettes
-  setUpPreMadeColorPalettes();   
   
   // Uploading the color theory images, logo, and like buttons
   ct1 = loadImage("ColorTheoryImg1.png");

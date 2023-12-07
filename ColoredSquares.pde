@@ -3,7 +3,7 @@ class ColoredSquare {
   int r, g, b;
   float ogX, ogY, x, y;
   int size, screenFor;
-  boolean liked, show;
+  boolean liked, included, show;
   
   //CONSTRUCTOR
   ColoredSquare(int s, float x, float y, int size) {
@@ -17,6 +17,7 @@ class ColoredSquare {
     this.y = y;
     this.size = size;
     this.liked = false;
+    this.included = false;
     this.show = false;
   }
   
@@ -33,11 +34,19 @@ class ColoredSquare {
     fill(#9F9F9F);
     rect(this.ogX+this.x, this.ogY+this.y+this.size-(this.size/7), this.size, this.size/7);
     
-    if(liked)
+    
+    for(int i = 0; i < likedColors.size(); i++){
+      if(likedColors.get(i).equals(hex(getHexCode(), 6))){
+        this.included = true;
+      }
+    }
+    
+    if(this.liked == true && this.included == true)
       image(likedColor, this.ogX+this.x, this.ogY+this.y+this.size-(this.size/7), this.size/7*2.2, this.size/7);
     else
       image(notALikedColor, this.ogX+this.x, this.ogY+this.y+this.size-(this.size/7), this.size/7*2.2, this.size/7);
     
+    this.included = false; // for the next frame
     
     int highestVal = this.r; // check which int value is the greatest - r, g, or b.
     if(highestVal < this.g)
