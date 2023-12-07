@@ -48,11 +48,9 @@ void invisibleControls() {
   }
   
   if (screen.screen == 7){
-    back.setVisible(true);
     savePalettes.setVisible(true);
   }
   else {
-    back.setVisible(false);
     savePalettes.setVisible(false);
   }
   

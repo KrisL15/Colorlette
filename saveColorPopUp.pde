@@ -2,6 +2,9 @@ void saveColor() {
   if(saveClicked){
     stroke(110);
     // dim the background
+    tint(0,0,0,125);
+    image(winterWonderland, 0, 40, 800, 600);
+    noTint();
     
     //white rectangle pop-up
     fill(255);

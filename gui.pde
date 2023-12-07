@@ -193,7 +193,7 @@ public void createGUI(){
   merge.setIcon("Merge.png", 1, GAlign.EAST, GAlign.RIGHT, GAlign.MIDDLE);
   merge.setLocalColorScheme(GCScheme.PURPLE_SCHEME);
   merge.addEventHandler(this, "mergeClicked");
-  sliderMini = new GSlider(this, 550, 200, 200, 10, 10.0);
+  sliderMini = new GSlider(this, 550, 200, 200, 10, 40.0);
   sliderMini.setRotation(PI/2, GControlMode.CORNER);
   sliderMini.setLimits(0.0, 0.0, 100.0);
   sliderMini.setNumberFormat(G4P.DECIMAL, 2);
