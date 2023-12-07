@@ -16,24 +16,31 @@
  
 int previousScreen = 0;
 
-void checkScreen() {
-  if(previousScreen != screen.screen) {
-    mainSlider.setLimits(0, 0.0, 100.0);
-    screen.screen = previousScreen;
+void resetScreen() {
+  //reset every y value to 0 so that nothing on the new selected page has been scrolled yet
+  mainSlider.setLimits(0, 0.0, 100.0);
+  screen.y = 0;
+  for(int i = 0; i < 10; i ++) {
+    for(int j = 0; j < 3; j++) {
+      browseColoredSquares[i][j].ogY = 0;
+    }
   }
 }
 
 public void exploreColorsClicked(GButton source, GEvent event) { //_CODE_:exploreColors:640186:
+  resetScreen();
   screen.screen = 3;
   previousScreen = screen.screen;
 } //_CODE_:exploreColors:640186:
 
 public void colorWheelClicked(GButton source, GEvent event) { //_CODE_:colorWheel:298686:
+  resetScreen();
   screen.screen = 2;
   previousScreen = screen.screen;
 } //_CODE_:colorWheel:298686:
 
 public void homeClicked(GButton source, GEvent event) { //_CODE_:home:930257:
+  resetScreen();
   screen.screen = 1;
   previousScreen = screen.screen;
 } //_CODE_:home:930257:
@@ -44,16 +51,15 @@ public void explorePalettesClicked(GButton source, GEvent event) { //_CODE_:expl
 } //_CODE_:explorePalettes:902454:
 
 public void myPalettesClicked(GButton source, GEvent event) { //_CODE_:myPalettes:900340:
+  resetScreen();
   screen.screen = 8;
   previousScreen = screen.screen;
-  checkScreen();
-  mainSlider.setLimits(0, 0.0, 100.0);
 } //_CODE_:myPalettes:900340:
 
 public void savePalettesClicked(GButton source, GEvent event) { //_CODE_:savePalettes:410609:
+  resetScreen();
   screen.screen = 7;
   previousScreen = screen.screen;
-  mainSlider.setLimits(0, 0.0, 100);
 } //_CODE_:savePalettes:410609:
 
 public void backClicked(GButton source, GEvent event) { //_CODE_:back:308297:
@@ -87,6 +93,7 @@ public void mainSliderChanged(GSlider source, GEvent event) { //_CODE_:mainSlide
 } //_CODE_:mainSlider:664683:
 
 public void seeSimilarClicked(GButton source, GEvent event) { //_CODE_:seeSimilar:278952:
+  resetScreen();
   screen.screen = 5;
   previousScreen = screen.screen;
 } //_CODE_:seeSimilar:278952:
@@ -104,30 +111,33 @@ public void blueValueChanged(GSlider source, GEvent event) { //_CODE_:blueValue:
 } //_CODE_:blueValue:837385:
 
 public void colorWheelMainClicked(GButton source, GEvent event) { //_CODE_:colorWheelMain:964956:
+  resetScreen();
   screen.screen = 2;
   previousScreen = screen.screen;
 } //_CODE_:colorWheelMain:964956:
 
 public void exploreColorsMainClicked(GButton source, GEvent event) { //_CODE_:exploreColorsMain:339268:
+  resetScreen();
   screen.screen = 3;
   previousScreen = screen.screen;
 } //_CODE_:exploreColorsMain:339268:
 
 public void explorePalettesMainClicked(GButton source, GEvent event) { //_CODE_:explorePalettesMain:548508:
+  resetScreen();
   screen.screen = 6;
   previousScreen = screen.screen;
 } //_CODE_:explorePalettesMain:548508:
 
 public void myPalettesMainClicked(GButton source, GEvent event) { //_CODE_:myPalettesMain:565413:
+  resetScreen();
   screen.screen = 8;
   previousScreen = screen.screen;
-  mainSlider.setLimits(0, 0.0, 100.0);
 } //_CODE_:myPalettesMain:565413:
 
 public void colorTheoryMainClicked(GButton source, GEvent event) { //_CODE_:colorTheoryMain:978602:
+  resetScreen();
   screen.screen = 10;
   previousScreen = screen.screen;
-  mainSlider.setLimits(0, 0.0, 100.0);
 } //_CODE_:colorTheoryMain:978602:
 
 public void windowXClicked(GButton source, GEvent event) { //_CODE_:windowX:545388:

@@ -1,6 +1,7 @@
 void mouseReleased() {
   
   if(screen.screen == 2){ // Color wheel screen
+    if(saveClicked == false){
       // if mouse is over coloredSquare
       if(mouseX >= colorWheelSquare.x && mouseX <= colorWheelSquare.x + colorWheelSquare.size && mouseY >= colorWheelSquare.y && mouseY <= colorWheelSquare.y + colorWheelSquare.size) {
         // if mouse is over the heart button, turn it to the opposite (if liked, unlike; if not liked, like)
@@ -16,12 +17,16 @@ void mouseReleased() {
         }
           
         // else if mouse is over the save button, run the save function
-    
+        else if (mouseX >= colorWheelSquare.x + colorWheelSquare.size/7*1.1 && mouseX <= colorWheelSquare.x + colorWheelSquare.size/7*2.2 && mouseY >= colorWheelSquare.y + colorWheelSquare.size - (colorWheelSquare.size/7)) {
+          saveColor();
+        
+        }
         // else, take you to view the color + complementary/similar colors
         //else {
         //  screen.screen = 5;
           
         //}
+      }
     }
   }
   

@@ -4,6 +4,7 @@ PImage ct1, ct2, ct3, ct4, ct5, ct6, ct7, colorletteLogo, likedColor, notALikedC
 String exploreColorType = "NONE";
 String explorePreMadePalette = "NONE";
 
+boolean saveClicked = false; // when the save button is clicked and the pop-up appears, it changes the mouse clicking options (variable mostly used in mouseActions and saveColorPopUp)
 
 Screen screen = new Screen(1);
 
