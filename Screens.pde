@@ -128,7 +128,7 @@ class Screen {
     textAlign(CENTER);
     textSize(50);
     fill(155, 98, 197);
-    text("Explore Our \nFavorite Color Palettes!", width/2, 125);
+    text("Explore Our\nFavorite Color Palettes!", width/2, 125);
     
     //colour options ("buttons")
     color[] col = {#7f89be, #d9542c, #dfb486, #bf560f, #34877c, #103630, #d78850, #947dbc, #494949};
@@ -155,8 +155,34 @@ class Screen {
     textAlign(CENTER);
     textSize(50);
     fill(155, 98, 197);
-    //text(colorPalette, width/2, 150);
+    text(explorePreMadePalette, width/2, 125);
+    if(explorePreMadePalette == "Winter Wonderland"){
+      
+    }
+    else if(explorePreMadePalette == "Vivid Spring"){
     
+    }
+    else if(explorePreMadePalette == "Pastel Summer"){
+    
+    }
+    else if(explorePreMadePalette == "Pumpkin Spice"){
+    
+    }
+    else if(explorePreMadePalette == "Northern Lights"){
+    
+    }
+    else if(explorePreMadePalette == "Enchanted Forest"){
+    
+    }
+    else if(explorePreMadePalette == "Sunset by the Beach"){
+    
+    }
+    else if(explorePreMadePalette == "Lavender Landscape"){
+    
+    }
+    else if(explorePreMadePalette == "Monochromatic"){
+    
+    }
   }
   
   void myPalettes() {

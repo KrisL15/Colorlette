@@ -1,15 +1,20 @@
 import g4p_controls.*;
 
-PImage ct1, ct2, ct3, ct4, ct5, ct6, ct7, colorletteLogo, likedColor, notALikedColor;
+PImage ct1, ct2, ct3, ct4, ct5, ct6, ct7, colorletteLogo, likedColor, notALikedColor, winterWonderland, vividSpring, pastelSummer, pumpkinSpice, northernLights, enchantedForest, sunsetByTheBeach, lavenderLandscape, monochromatic;
 String exploreColorType = "NONE";
 String explorePreMadePalette = "NONE";
 
 
 Screen screen = new Screen(1);
+
 ColoredSquare colorWheelSquare = new ColoredSquare(2, 237.5, 80, 325);
 ColoredSquare[][] browseColoredSquares = new ColoredSquare[10][3];
+ColoredSquare[][] preMadePaletteSquares = new ColoredSquare[2][3];
+
 ExploreSpecificColor[] exploreSpecificCol = new ExploreSpecificColor[17];
+
 ArrayList<String> likedColors = new ArrayList<String>();
+ArrayList<String> palettes = new ArrayList<String>();
 
 void setup() {
   createGUI();
@@ -24,7 +29,11 @@ void setup() {
     y += 240;
     x = 60;
   }
-        
+  
+  //Creating the pre-made Color Palettes
+  setUpPreMadeColorPalettes();   
+  
+  // Uploading the color theory images, logo, and like buttons
   ct1 = loadImage("ColorTheoryImg1.png");
   ct2 = loadImage("ColorTheoryImg2.png");
   ct3 = loadImage("ColorTheoryImg3.png");
@@ -35,6 +44,17 @@ void setup() {
   colorletteLogo = loadImage("ColorletteLogo.png");
   likedColor = loadImage("LikedColor.png");
   notALikedColor = loadImage("NotALikedColor.png");
+  
+  //palette images
+  winterWonderland = loadImage("Winter Wonderland.png");
+  vividSpring = loadImage("Vivid Spring.png");
+  pastelSummer = loadImage("Pastel Summer.png");
+  pumpkinSpice = loadImage("Pumpkin Spice.png");
+  northernLights = loadImage("Northern Lights.png");
+  enchantedForest = loadImage("Enchanted Forest.png");
+  sunsetByTheBeach = loadImage("Sunset by the Beach.png");
+  lavenderLandscape = loadImage("Lavender Landscape.png");
+  monochromatic = loadImage("Monochromatic.png");
 }
 
 

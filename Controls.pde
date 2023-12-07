@@ -1,13 +1,9 @@
-float sP;
-
 void invisibleControls() {
   sliderMini.setVisible(false);
   windowX.setVisible(false);
   savePalettes.setVisible(false);
   merge.setVisible(false);
   delete.setVisible(false);
-  seeSimilar.setVisible(false);
-  back.setVisible(false);
   
   if (screen.screen == 1) {
     colorWheelMain.setVisible(true);
@@ -44,11 +40,17 @@ void invisibleControls() {
   }
   
   else {
-    sP = 0.0;
     mainSlider.setVisible(true);
   }
   
   if (screen.screen == 4 || screen.screen == 5 || screen.screen == 7 || screen.screen == 9 || screen.screen == 10){ // screens with a back button
+    back.setVisible(true);
+  }
+  else {
+    back.setVisible(false);
+  }
+  
+  if (screen.screen == 7){
     back.setVisible(true);
   }
   else {

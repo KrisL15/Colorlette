@@ -15,12 +15,11 @@
  */
  
 int previousScreen = 0;
-int currentScreen = 0;
 
 void checkScreen() {
-  if(previousScreen != currentScreen) {
+  if(previousScreen != screen.screen) {
     mainSlider.setLimits(0, 0.0, 100.0);
-    previousScreen = currentScreen;
+    screen.screen = previousScreen;
   }
 }
 
@@ -48,16 +47,22 @@ public void myPalettesClicked(GButton source, GEvent event) { //_CODE_:myPalette
   screen.screen = 8;
   previousScreen = screen.screen;
   checkScreen();
+  mainSlider.setLimits(0, 0.0, 100.0);
 } //_CODE_:myPalettes:900340:
 
 public void savePalettesClicked(GButton source, GEvent event) { //_CODE_:savePalettes:410609:
   screen.screen = 7;
-  checkScreen();
+  previousScreen = screen.screen;
+  mainSlider.setLimits(0, 0.0, 100);
 } //_CODE_:savePalettes:410609:
 
 public void backClicked(GButton source, GEvent event) { //_CODE_:back:308297:
-  screen.screen -= 1;
-  previousScreen = screen.screen;
+  if(screen.screen == 10)  //color theory to home
+    screen.screen = 1;
+  else if(screen.screen == 5 && previousScreen == 2)  //see similar/complementary colors
+    screen.screen = 2;
+  else
+    screen.screen -= 1;
 } //_CODE_:back:308297:
 
 public void deleteClicked(GButton source, GEvent event) { //_CODE_:delete:600029:
@@ -115,16 +120,18 @@ public void explorePalettesMainClicked(GButton source, GEvent event) { //_CODE_:
 
 public void myPalettesMainClicked(GButton source, GEvent event) { //_CODE_:myPalettesMain:565413:
   screen.screen = 8;
-  checkScreen();
+  previousScreen = screen.screen;
+  mainSlider.setLimits(0, 0.0, 100.0);
 } //_CODE_:myPalettesMain:565413:
 
 public void colorTheoryMainClicked(GButton source, GEvent event) { //_CODE_:colorTheoryMain:978602:
   screen.screen = 10;
-  checkScreen();
+  previousScreen = screen.screen;
+  mainSlider.setLimits(0, 0.0, 100.0);
 } //_CODE_:colorTheoryMain:978602:
 
 public void windowXClicked(GButton source, GEvent event) { //_CODE_:windowX:545388:
-  
+  previousScreen = screen.screen;
 } //_CODE_:windowX:545388:
 
 
