@@ -5,20 +5,19 @@ String exploreColorType = "NONE";
 String explorePreMadePalette = "NONE";
 
 boolean saveClicked = false; // when the save button is clicked and the pop-up appears, it changes the mouse clicking options (variable mostly used in mouseActions, controls and saveColorPopUp)
-int saveI; // saves the i and j value of the specific browseColoredSquares or preMadePaletteSquares when the save button is clicked
+int saveI; // saves the i and j value of the specific browseColoredSquares or paletteSquares when the save button is clicked
 int saveJ;
 boolean newPalette = false; // if the user wants to create a new palette
 String paletteName = ""; // new palette name
 boolean palettesMaxed = false; // up to 6 palettes can be made at once. This variable tracks whether the max # of palettes have been reached.
-int paletteSelected;
+String paletteSelected;
+int screenPast = 0;
 
 Screen screen = new Screen(1);
 
 ColoredSquare colorWheelSquare = new ColoredSquare(2, 237.5, 80, 325);
 ColoredSquare[][] browseColoredSquares = new ColoredSquare[10][3];
-ColoredSquare[][] preMadePaletteSquares = new ColoredSquare[2][3];
-
-ExploreSpecificColor[] exploreSpecificCol = new ExploreSpecificColor[17];
+ColoredSquare[][] paletteSquares = new ColoredSquare[2][3];
 
 ArrayList<String> likedColors = new ArrayList<String>();
 ArrayList<MyPalette> palettes = new ArrayList<MyPalette>();
@@ -52,12 +51,12 @@ void setup() {
     x = 60;
   }
 
-  //setup preMadePaletteSquares
+  //setup paletteSquares
   x = 350;
   y = 180;
   for(int i = 0; i < 2; i++) {
     for(int j = 0; j < 3; j++) {
-      preMadePaletteSquares[i][j] = new ColoredSquare(7, x, y, 125);
+      paletteSquares[i][j] = new ColoredSquare(7, x, y, 125);
       x+=145;
     }
     y += 155;
@@ -95,5 +94,4 @@ void draw() {
   screen.navigatorBar();
   invisibleControls();
   saveColorPopUp();
-  //println(likedColors);
 }

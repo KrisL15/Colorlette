@@ -63,28 +63,39 @@ public void savePalettesClicked(GButton source, GEvent event) { //_CODE_:savePal
   resetScreen();
   screen.screen = 7;
   previousScreen = screen.screen;
-  palettes.add(new MyPalette(explorePreMadePalette));
+  screenPast = screen.screen;
   
-  int n = 0;
-  for(int i = 0; i < 6; i++){
-    if(explorePreMadePalette == "Winter Wonderland")
-      palettes.get(palettes.size()-1).addColor(hex(color(winterW[n], winterW[n+1], winterW[n+2]), 6));
-    else if(explorePreMadePalette == "Vivid Spring")
-      palettes.get(palettes.size()-1).addColor(hex(color(vSpring[n], vSpring[n+1], vSpring[n+2]), 6));
-    else if(explorePreMadePalette == "Pastel Summer")
-      palettes.get(palettes.size()-1).addColor(hex(color(pSummer[n], pSummer[n+1], pSummer[n+2]), 6));
-    else if(explorePreMadePalette == "Pumpkin Spice")
-      palettes.get(palettes.size()-1).addColor(hex(color(pumpkinS[n], pumpkinS[n+1], pumpkinS[n+2]), 6));
-    else if(explorePreMadePalette == "Northern Lights")
-      palettes.get(palettes.size()-1).addColor(hex(color(nLights[n], nLights[n+1], nLights[n+2]), 6));
-    else if(explorePreMadePalette == "Enchanted Forest")
-      palettes.get(palettes.size()-1).addColor(hex(color(eForest[n], eForest[n+1], eForest[n+2]), 6));
-    else if(explorePreMadePalette == "Sunset by the Beach")
-      palettes.get(palettes.size()-1).addColor(hex(color(sBeach[n], sBeach[n+1], sBeach[n+2]), 6));
-    else if(explorePreMadePalette == "Lavender Landscape")
-      palettes.get(palettes.size()-1).addColor(hex(color(lavenderL[n], lavenderL[n+1], lavenderL[n+2]), 6));
-    n+=3;
+  if(palettes.size() < 6)
+    newPalette = true;
+  else
+    palettesMaxed = true;
+    
+  if(!palettesMaxed){
+    palettes.add(new MyPalette(explorePreMadePalette));
+  
+    int n = 0;
+    for(int i = 0; i < 6; i++){
+      if(explorePreMadePalette == "Winter Wonderland")
+        palettes.get(palettes.size()-1).addColor(hex(color(winterW[n], winterW[n+1], winterW[n+2]), 6));
+      else if(explorePreMadePalette == "Vivid Spring")
+        palettes.get(palettes.size()-1).addColor(hex(color(vSpring[n], vSpring[n+1], vSpring[n+2]), 6));
+      else if(explorePreMadePalette == "Pastel Summer")
+        palettes.get(palettes.size()-1).addColor(hex(color(pSummer[n], pSummer[n+1], pSummer[n+2]), 6));
+      else if(explorePreMadePalette == "Pumpkin Spice")
+        palettes.get(palettes.size()-1).addColor(hex(color(pumpkinS[n], pumpkinS[n+1], pumpkinS[n+2]), 6));
+      else if(explorePreMadePalette == "Northern Lights")
+        palettes.get(palettes.size()-1).addColor(hex(color(nLights[n], nLights[n+1], nLights[n+2]), 6));
+      else if(explorePreMadePalette == "Enchanted Forest")
+        palettes.get(palettes.size()-1).addColor(hex(color(eForest[n], eForest[n+1], eForest[n+2]), 6));
+      else if(explorePreMadePalette == "Sunset by the Beach")
+        palettes.get(palettes.size()-1).addColor(hex(color(sBeach[n], sBeach[n+1], sBeach[n+2]), 6));
+      else if(explorePreMadePalette == "Lavender Landscape")
+        palettes.get(palettes.size()-1).addColor(hex(color(lavenderL[n], lavenderL[n+1], lavenderL[n+2]), 6));
+      n+=3;
+    }
   }
+  else
+    maxPalettesReached();
   
 } //_CODE_:savePalettes:410609:
 
@@ -118,6 +129,13 @@ public void seeSimilarClicked(GButton source, GEvent event) { //_CODE_:seeSimila
   resetScreen();
   screen.screen = 5;
   previousScreen = screen.screen;
+  for(int i=0; i<2; i++) {
+    for(int j=0; j<3; j++) {
+      paletteSquares[i][j].r = colorWheelSquare.r + int(random(-50, 50));
+      paletteSquares[i][j].g = colorWheelSquare.g + int(random(-50, 50));
+      paletteSquares[i][j].b = colorWheelSquare.b + int(random(-50, 50));
+    }
+  }
 } //_CODE_:seeSimilar:278952:
 
 public void redValueChanged(GSlider source, GEvent event) { //_CODE_:redValue:714811:

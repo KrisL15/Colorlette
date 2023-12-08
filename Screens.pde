@@ -121,6 +121,59 @@ class Screen {
   }
   
   void exploreColorsSelected() {
+    textAlign(CENTER);
+    textSize(50);
+    fill(155, 98, 197);
+    text("Similar Colors:", 400, 125);
+    if(screenPast == 2){
+      fill(colorWheelSquare.r, colorWheelSquare.g, colorWheelSquare.b);
+      square(35, 180, 280);
+    
+      //determine text color based on square color
+      int highestVal = colorWheelSquare.r; // check which int value is the greatest - r, g, or b.
+      if(highestVal < colorWheelSquare.g)
+        highestVal = colorWheelSquare.g;
+      if(highestVal < colorWheelSquare.b)
+        highestVal = colorWheelSquare.b;
+    
+      if(highestVal == colorWheelSquare.b && colorWheelSquare.r < 100 && colorWheelSquare.g < 100) // When there's mostly blue, the colour is dark so we need a white text font
+        fill(255);
+      else if(highestVal > 150) // If highest int value between r, g, and b is greater than 100, the color is light/bright so the hexcode text is printed in black.
+        fill(0);
+      else // The coloured sqaure is too dark so the hexcode text should be printed in white
+        fill(255);
+      
+      textSize(30);
+      text("#" + hex(colorWheelSquare.getHexCode(), 6), 165, 330);
+    }
+    else{
+      fill(browseColoredSquares[saveI][saveJ].getHexCode());
+      square(35, 180, 280);
+    
+      //determine text color based on square color
+      int highestVal = browseColoredSquares[saveI][saveJ].r; // check which int value is the greatest - r, g, or b.
+      if(highestVal < browseColoredSquares[saveI][saveJ].g)
+        highestVal = browseColoredSquares[saveI][saveJ].g;
+      if(highestVal < browseColoredSquares[saveI][saveJ].b)
+        highestVal = browseColoredSquares[saveI][saveJ].b;
+    
+      if(highestVal == browseColoredSquares[saveI][saveJ].b && browseColoredSquares[saveI][saveJ].r < 100 && browseColoredSquares[saveI][saveJ].g < 100) // When there's mostly blue, the colour is dark so we need a white text font
+        fill(255);
+      else if(highestVal > 150) // If highest int value between r, g, and b is greater than 100, the color is light/bright so the hexcode text is printed in black.
+        fill(0);
+      else // The coloured sqaure is too dark so the hexcode text should be printed in white
+        fill(255);
+      
+      textSize(30);
+      text("#" + hex(browseColoredSquares[saveI][saveJ].getHexCode(), 6), 165, 330);
+    }
+    
+    for(int i=0; i<2; i++) {
+      for(int j=0; j<3; j++) {
+        paletteSquares[i][j].drawSquare();
+      }
+    }
+    //ExploreSpecificColor();
   }
   
   void explorePalettes() {
@@ -163,11 +216,11 @@ class Screen {
       image(winterWonderland, 35, 180, 280, 280);
       for(int i=0; i<2; i++) {
         for(int j=0; j<3; j++) {
-          preMadePaletteSquares[i][j].r = winterW[n];
-          preMadePaletteSquares[i][j].g = winterW[n+1];
-          preMadePaletteSquares[i][j].b = winterW[n+2];
+          paletteSquares[i][j].r = winterW[n];
+          paletteSquares[i][j].g = winterW[n+1];
+          paletteSquares[i][j].b = winterW[n+2];
 
-          preMadePaletteSquares[i][j].drawSquare();
+          paletteSquares[i][j].drawSquare();
 
           n += 3;
         }
@@ -178,11 +231,11 @@ class Screen {
       image(vividSpring, 35, 180, 280, 280);
       for(int i=0; i<2; i++) {
         for(int j=0; j<3; j++) {
-          preMadePaletteSquares[i][j].r = vSpring[n];
-          preMadePaletteSquares[i][j].g = vSpring[n+1];
-          preMadePaletteSquares[i][j].b = vSpring[n+2];
+          paletteSquares[i][j].r = vSpring[n];
+          paletteSquares[i][j].g = vSpring[n+1];
+          paletteSquares[i][j].b = vSpring[n+2];
 
-          preMadePaletteSquares[i][j].drawSquare();
+          paletteSquares[i][j].drawSquare();
 
           n += 3;
         }
@@ -193,11 +246,11 @@ class Screen {
       image(pastelSummer, 35, 180, 280, 280);
       for(int i=0; i<2; i++) {
         for(int j=0; j<3; j++) {
-          preMadePaletteSquares[i][j].r = pSummer[n];
-          preMadePaletteSquares[i][j].g = pSummer[n+1];
-          preMadePaletteSquares[i][j].b = pSummer[n+2];
+          paletteSquares[i][j].r = pSummer[n];
+          paletteSquares[i][j].g = pSummer[n+1];
+          paletteSquares[i][j].b = pSummer[n+2];
 
-          preMadePaletteSquares[i][j].drawSquare();
+          paletteSquares[i][j].drawSquare();
 
           n += 3;
         }
@@ -208,11 +261,11 @@ class Screen {
       image(pumpkinSpice, 35, 180, 280, 280);
       for(int i=0; i<2; i++) {
         for(int j=0; j<3; j++) {
-          preMadePaletteSquares[i][j].r = pumpkinS[n];
-          preMadePaletteSquares[i][j].g = pumpkinS[n+1];
-          preMadePaletteSquares[i][j].b = pumpkinS[n+2];
+          paletteSquares[i][j].r = pumpkinS[n];
+          paletteSquares[i][j].g = pumpkinS[n+1];
+          paletteSquares[i][j].b = pumpkinS[n+2];
 
-          preMadePaletteSquares[i][j].drawSquare();
+          paletteSquares[i][j].drawSquare();
 
           n += 3;
         }
@@ -223,11 +276,11 @@ class Screen {
       image(northernLights, 35, 180, 280, 280);
       for(int i=0; i<2; i++) {
         for(int j=0; j<3; j++) {
-          preMadePaletteSquares[i][j].r = nLights[n];
-          preMadePaletteSquares[i][j].g = nLights[n+1];
-          preMadePaletteSquares[i][j].b = nLights[n+2];
+          paletteSquares[i][j].r = nLights[n];
+          paletteSquares[i][j].g = nLights[n+1];
+          paletteSquares[i][j].b = nLights[n+2];
 
-          preMadePaletteSquares[i][j].drawSquare();
+          paletteSquares[i][j].drawSquare();
 
           n += 3;
         }
@@ -238,11 +291,11 @@ class Screen {
       image(enchantedForest, 35, 180, 280, 280);
       for(int i=0; i<2; i++) {
         for(int j=0; j<3; j++) {
-          preMadePaletteSquares[i][j].r = eForest[n];
-          preMadePaletteSquares[i][j].g = eForest[n+1];
-          preMadePaletteSquares[i][j].b = eForest[n+2];
+          paletteSquares[i][j].r = eForest[n];
+          paletteSquares[i][j].g = eForest[n+1];
+          paletteSquares[i][j].b = eForest[n+2];
 
-          preMadePaletteSquares[i][j].drawSquare();
+          paletteSquares[i][j].drawSquare();
 
           n += 3;
         }
@@ -253,11 +306,11 @@ class Screen {
       image(sunsetByTheBeach, 35, 180, 280, 280);
       for(int i=0; i<2; i++) {
         for(int j=0; j<3; j++) {
-          preMadePaletteSquares[i][j].r = sBeach[n];
-          preMadePaletteSquares[i][j].g = sBeach[n+1];
-          preMadePaletteSquares[i][j].b = sBeach[n+2];
+          paletteSquares[i][j].r = sBeach[n];
+          paletteSquares[i][j].g = sBeach[n+1];
+          paletteSquares[i][j].b = sBeach[n+2];
 
-          preMadePaletteSquares[i][j].drawSquare();
+          paletteSquares[i][j].drawSquare();
 
           n += 3;
         }
@@ -268,11 +321,11 @@ class Screen {
       image(lavenderLandscape, 35, 180, 280, 280);
       for(int i=0; i<2; i++) {
         for(int j=0; j<3; j++) {
-          preMadePaletteSquares[i][j].r = lavenderL[n];
-          preMadePaletteSquares[i][j].g = lavenderL[n+1];
-          preMadePaletteSquares[i][j].b = lavenderL[n+2];
+          paletteSquares[i][j].r = lavenderL[n];
+          paletteSquares[i][j].g = lavenderL[n+1];
+          paletteSquares[i][j].b = lavenderL[n+2];
 
-          preMadePaletteSquares[i][j].drawSquare();
+          paletteSquares[i][j].drawSquare();
 
           n += 3;
         }
@@ -283,11 +336,11 @@ class Screen {
       image(monochromatic, 35, 180, 280, 280);
       for(int i=0; i<2; i++) {
         for(int j=0; j<3; j++) {
-          preMadePaletteSquares[i][j].r = mono[n];
-          preMadePaletteSquares[i][j].g = mono[n+1];
-          preMadePaletteSquares[i][j].b = mono[n+2];
+          paletteSquares[i][j].r = mono[n];
+          paletteSquares[i][j].g = mono[n+1];
+          paletteSquares[i][j].b = mono[n+2];
 
-          preMadePaletteSquares[i][j].drawSquare();
+          paletteSquares[i][j].drawSquare();
 
           n += 3;
         }
@@ -302,9 +355,32 @@ class Screen {
     textSize(50);
     fill(155, 98, 197);
     text("My Palettes", width/2, 125);
+    
+    // liked colors palette
+    fill(200,200,200);
+    rect(100, 150, 680, 60);
+    fill(0);
+    textAlign(LEFT);
+    textSize(30);
+    text("Liked Colors", 110, 190);  
+    textAlign(RIGHT);
+    textSize(30);
+    text(likedColors.size() + " Color(s)", 750, 190);
+      
+    int rectY = 215;
+    int textY = 256;
     for(int i = 0; i < palettes.size(); i++){
-      fill(int(palettes.get(i).paletteColors.get(0)));
-      text(palettes.get(i).title, width/2, 125+i*50);
+      fill(200,200,200);
+      rect(100, rectY+i*65, 680, 60);
+      
+      fill(0);
+      textAlign(LEFT);
+      textSize(30);
+      text(palettes.get(i).title, 110, textY+i*65);
+      
+      textAlign(RIGHT);
+      textSize(30);
+      text(palettes.size() + " Color(s)", 750, textY+i*65);
     }
   }
   

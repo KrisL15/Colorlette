@@ -15,10 +15,10 @@ void mouseReleased() {
   }
   for(int i = 0; i < 2; i++){
     for(int j = 0; j < 3; j++){
-      likeButton(preMadePaletteSquares[i][j], i, j);
+      likeButton(paletteSquares[i][j], i, j);
       if(screen.screen == 7){
         if(i == saveI && j == saveJ)
-          saveColor(preMadePaletteSquares[saveI][saveJ]);
+          saveColor(paletteSquares[saveI][saveJ]);
       }
     }
   }
@@ -126,6 +126,26 @@ void mouseReleased() {
       }
     }
   }
+  
+  
+  // when on the myPalettes Screen
+  if(screen.screen == 8) {
+    int y = 215;
+    if(mouseX >= 100 && mouseX <= 680){
+      if(mouseY >= 150 && mouseY <= 210){
+          paletteSelected = "Liked Colors";
+      }
+      else {
+        for(int i = 0; i < palettes.size(); i++){
+          if(mouseY >= y+i*65 && mouseY <= y+i*65+60){
+            paletteSelected = palettes.get(i).title;
+          }
+        }
+      }
+      
+      screen.screen = 9;
+    }
+  }
 }
 
   
@@ -183,6 +203,7 @@ void likeButton(ColoredSquare a, int saveThisI, int saveThisJ) {
   if(saveClicked == false){
     // if mouse is over coloredSquare
     if(mouseX >= a.ogX + a.x && mouseX <= a.ogX +a.x + a.size && mouseY >= a.ogY +a.y && mouseY <= a.ogY +a.y + a.size) {
+      
       // if mouse is over the heart button, turn it to the opposite (if liked, unlike; if not liked, like)
       if(mouseX <= a.ogX +a.x + a.size/7*1.1 && mouseY >= a.ogY +a.y + a.size - (a.size/7)) {
         if(a.liked == false) {
@@ -200,13 +221,21 @@ void likeButton(ColoredSquare a, int saveThisI, int saveThisJ) {
         saveClicked = true;
         saveI = saveThisI;
         saveJ = saveThisJ;
-      
       }
-      // else, take you to view the color + complementary/similar colors
-      //else {
-      //  screen.screen = 5;
-          
-      //}
+      // else, take you to view the color + similar colors
+      else if(screen.screen == 4 || screen.screen == 9) {
+        screen.screen = 5;
+        saveI = saveThisI;
+        saveJ = saveThisJ;
+        screenPast = screen.screen;
+        for(int i=0; i<2; i++) {
+          for(int j=0; j<3; j++) {
+          paletteSquares[i][j].r = browseColoredSquares[saveI][saveJ].r + int(random(-50, 50));
+          paletteSquares[i][j].g = browseColoredSquares[saveI][saveJ].g + int(random(-50, 50));
+          paletteSquares[i][j].b = browseColoredSquares[saveI][saveJ].b + int(random(-50, 50));
+          }
+        }
+      }
     }
   }
 }

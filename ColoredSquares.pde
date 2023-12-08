@@ -66,28 +66,28 @@ class ColoredSquare {
   
   void setColor() {
     if(exploreColorType == "RED"){
-      this.r = int(random(20,255));
-      this.g = int(random(this.r/2));
-      this.b = int(random(this.r/2));
+      this.r = int(random(75,255));
+      this.g = int(random(this.r/3));
+      this.b = int(random(this.r/3));
     }
     else if(exploreColorType == "GREEN"){
-      this.g = int(random(20,255));
       this.r = int(random(this.g/2));
+      this.g = int(random(20,255));
       this.b = int(random(this.g/2));
     }
     else if(exploreColorType == "BLUE"){
       this.b = int(random(20,255));
-      this.r = int(random(this.b/2));
+      this.r = int(random((this.b/2)-20));
       this.g = int(random(this.b/2));
     }
     else if(exploreColorType == "ORANGE"){
-      this.g = int(random(20,255));
-      this.r = this.g*2;
-      this.g = int(random(this.g/2));
+      this.g = int(random(40,170));
+      this.r = this.g*3;
+      this.b = int(random(this.g/2));
     }
     else if(exploreColorType == "YELLOW"){
-      this.r = int(random(100,255));
-      this.g = this.r;
+      this.r = int(random(225,255));
+      this.g = this.r-int(random(20,50));
       this.b = int(random(this.r/3));
     }
     else if(exploreColorType == "PURPLE"){
@@ -111,6 +111,7 @@ class ColoredSquare {
       this.b = this.r;
     }
   }
+
 
   color getHexCode() {
     color squareCol = color(this.r, this.g, this.b);

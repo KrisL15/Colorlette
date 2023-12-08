@@ -22,6 +22,7 @@ void saveColorPopUp() {
       
       // text
       fill(155, 98, 197);
+      textAlign(LEFT);
       textSize(24);
       text("Save color to:", 265, 250);
       
@@ -33,6 +34,7 @@ void saveColorPopUp() {
         fill(0);
         textSize(12);
         text(palettes.get(i).title, 287, 275+(20*(i+1)));
+        textAlign(CENTER);
         boolean included = false;
         // if the color is saved in the palette, the little checkbox square is purple
         for(int a = 0; a < palettes.get(i).paletteColors.size(); a++){
@@ -47,7 +49,7 @@ void saveColorPopUp() {
             }
           }
           else if(screen.screen == 7){
-            if(palettes.get(i).paletteColors.get(a).equals(hex(preMadePaletteSquares[saveI][saveJ].getHexCode(), 6))){
+            if(palettes.get(i).paletteColors.get(a).equals(hex(paletteSquares[saveI][saveJ].getHexCode(), 6))){
               included = true;
             }
           }
@@ -64,6 +66,7 @@ void saveColorPopUp() {
     }
     
     else { // the user selected "create new palette"
+      textAlign(LEFT);
       fill(155, 98, 197);
       textSize(24);
       text("Name your new palette:", 265, 270);
@@ -73,7 +76,9 @@ void saveColorPopUp() {
       fill(200,200,200);
       rect(265, 280, 270, 40); // writing text
       rect(485, 330, 50, 25);// save button
+      textAlign(CENTER);
       
+      textAlign(LEFT);
       fill(0);
       textSize(15);
       text("Save", 495, 348);
