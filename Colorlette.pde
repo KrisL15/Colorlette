@@ -5,16 +5,18 @@ String exploreColorType = "NONE";
 String explorePreMadePalette = "NONE";
 
 boolean saveClicked = false; // when the save button is clicked and the pop-up appears, it changes the mouse clicking options (variable mostly used in mouseActions, controls and saveColorPopUp)
+int saveI; // saves the i and j value of the specific browseColoredSquares or preMadePaletteSquares when the save button is clicked
+int saveJ;
 boolean newPalette = false; // if the user wants to create a new palette
 String paletteName = ""; // new palette name
 boolean palettesMaxed = false; // up to 6 palettes can be made at once. This variable tracks whether the max # of palettes have been reached.
+int paletteSelected;
 
 Screen screen = new Screen(1);
 
 ColoredSquare colorWheelSquare = new ColoredSquare(2, 237.5, 80, 325);
 ColoredSquare[][] browseColoredSquares = new ColoredSquare[10][3];
 ColoredSquare[][] preMadePaletteSquares = new ColoredSquare[2][3];
-//ArrayList<ColoredSquare> allColoredSquares = new ArrayList<ColoredSquare>(3);
 
 ExploreSpecificColor[] exploreSpecificCol = new ExploreSpecificColor[17];
 
@@ -38,10 +40,7 @@ void setup() {
   createGUI();
   size(800, 600);
   
-  //allColoredSquares.add(colorWheelSquare);
-  //allColoredSquares.add(browseColoredSquares);
-  //allColoredSquares.add(preMadePaletteSquares);
-  
+  //setup browseColoredSquares
   int x = 60;
   int y = 160;
   for(int i = 0; i < 10; i++) {
@@ -53,6 +52,7 @@ void setup() {
     x = 60;
   }
 
+  //setup preMadePaletteSquares
   x = 350;
   y = 180;
   for(int i = 0; i < 2; i++) {
@@ -63,7 +63,7 @@ void setup() {
     y += 155;
     x = 350;
   }
-
+  
   // Uploading the color theory images, logo, and like buttons
   ct1 = loadImage("ColorTheoryImg1.png");
   ct2 = loadImage("ColorTheoryImg2.png");
@@ -94,5 +94,6 @@ void draw() {
   screen.callScreens();
   screen.navigatorBar();
   invisibleControls();
-  saveColor();
+  saveColorPopUp();
+  //println(likedColors);
 }

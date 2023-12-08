@@ -1,4 +1,4 @@
-void saveColor() {
+void saveColorPopUp() {
   if(saveClicked){
     
     stroke(110);
@@ -36,8 +36,20 @@ void saveColor() {
         boolean included = false;
         // if the color is saved in the palette, the little checkbox square is purple
         for(int a = 0; a < palettes.get(i).paletteColors.size(); a++){
-          if(palettes.get(i).paletteColors.get(a).equals(hex(colorWheelSquare.getHexCode(), 6))){
-            included = true;
+          if(screen.screen == 2){
+            if(palettes.get(i).paletteColors.get(a).equals(hex(colorWheelSquare.getHexCode(), 6))){
+              included = true;
+            }
+          }
+          else if(screen.screen == 4 || screen.screen == 9){
+            if(palettes.get(i).paletteColors.get(a).equals(hex(browseColoredSquares[saveI][saveJ].getHexCode(), 6))){
+              included = true;
+            }
+          }
+          else if(screen.screen == 7){
+            if(palettes.get(i).paletteColors.get(a).equals(hex(preMadePaletteSquares[saveI][saveJ].getHexCode(), 6))){
+              included = true;
+            }
           }
         }
         
@@ -48,7 +60,6 @@ void saveColor() {
           fill(255);
         
         square(264, 265+(20*(i+1)), 10);
-       
       }
     }
     

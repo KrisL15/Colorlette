@@ -302,14 +302,29 @@ class Screen {
     textSize(50);
     fill(155, 98, 197);
     text("My Palettes", width/2, 125);
+    for(int i = 0; i < palettes.size(); i++){
+      fill(int(palettes.get(i).paletteColors.get(0)));
+      text(palettes.get(i).title, width/2, 125+i*50);
+    }
   }
   
   void myPalettesSelected() {
     //textFont(brandFont);
     textAlign(CENTER);
     textSize(50);
+    textSize(50);
     fill(155, 98, 197);
-    //text(myPalette, width/2, 125);
+    if(browseColoredSquares[1][1].ogY > -50)
+      text(paletteSelected, width/2, 125);
+    else {
+      fill(255);
+      rect(100, 80, 600, 50);
+    }
+    for(int i = 0; i < 10; i ++) {
+      for(int j = 0; j < 3; j++){
+        browseColoredSquares[i][j].drawSquare();
+      }
+    }
   }
   
   void colorTheory() {
