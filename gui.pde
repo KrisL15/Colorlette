@@ -197,7 +197,7 @@ public void createGUI(){
   mainSlider.setLocalColorScheme(GCScheme.PURPLE_SCHEME);
   mainSlider.setOpaque(false);
   mainSlider.addEventHandler(this, "mainSliderChanged");
-  seeSimilar = new GButton(this, 529, 525, 223, 40);
+  seeSimilar = new GButton(this, 577, 550, 220, 40);
   seeSimilar.setIcon("See Similar.png", 1, GAlign.EAST, GAlign.RIGHT, GAlign.MIDDLE);
   seeSimilar.setLocalColorScheme(GCScheme.PURPLE_SCHEME);
   seeSimilar.addEventHandler(this, "seeSimilarClicked");

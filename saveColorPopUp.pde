@@ -28,11 +28,26 @@ void saveColor() {
       fill(0);
       textSize(12);
       text("+   Create New Palette", 265, 275);
-    
+      
       for(int i = 0; i < palettes.size(); i++){
         fill(0);
         textSize(12);
         text(palettes.get(i).title, 287, 275+(20*(i+1)));
+        boolean included = false;
+        // if the color is saved in the palette, the little checkbox square is purple
+        for(int a = 0; a < palettes.get(i).paletteColors.size(); a++){
+          if(palettes.get(i).paletteColors.get(a).equals(hex(colorWheelSquare.getHexCode(), 6))){
+            included = true;
+          }
+        }
+        
+        if(included)
+          fill(155, 98, 197);
+        
+        else // if the color is not saved in the palette or has been removed, the checkbox square is white
+          fill(255);
+        
+        square(264, 265+(20*(i+1)), 10);
        
       }
     }

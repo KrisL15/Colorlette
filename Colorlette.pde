@@ -14,6 +14,7 @@ Screen screen = new Screen(1);
 ColoredSquare colorWheelSquare = new ColoredSquare(2, 237.5, 80, 325);
 ColoredSquare[][] browseColoredSquares = new ColoredSquare[10][3];
 ColoredSquare[][] preMadePaletteSquares = new ColoredSquare[2][3];
+//ArrayList<ColoredSquare> allColoredSquares = new ArrayList<ColoredSquare>(3);
 
 ExploreSpecificColor[] exploreSpecificCol = new ExploreSpecificColor[17];
 
@@ -36,6 +37,11 @@ color mono[] = {177,177,177  ,  235, 235, 235  ,  34,34,34  ,  73,73,73  ,  117,
 void setup() {
   createGUI();
   size(800, 600);
+  
+  //allColoredSquares.add(colorWheelSquare);
+  //allColoredSquares.add(browseColoredSquares);
+  //allColoredSquares.add(preMadePaletteSquares);
+  
   int x = 60;
   int y = 160;
   for(int i = 0; i < 10; i++) {
@@ -89,5 +95,4 @@ void draw() {
   screen.navigatorBar();
   invisibleControls();
   saveColor();
-  println(likedColors);
 }
