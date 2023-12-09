@@ -18,6 +18,7 @@ int previousScreen = 0;
 
 void resetScreen() {
   saveClicked = false;
+  popUpEnabled = false;
   palettesMaxed = false;
   //reset every y value to 0 so that nothing on the new selected page has been scrolled yet
   mainSlider.setLimits(0, 0.0, 100.0);
@@ -60,10 +61,10 @@ public void myPalettesClicked(GButton source, GEvent event) { //_CODE_:myPalette
 } //_CODE_:myPalettes:900340:
 
 public void savePalettesClicked(GButton source, GEvent event) { //_CODE_:savePalettes:410609:
-  resetScreen();
-  screen.screen = 7;
   previousScreen = screen.screen;
   screenPast = screen.screen;
+  resetScreen();
+  screen.screen = 7;
   
   if(palettes.size() < 6)
     newPalette = true;
@@ -76,21 +77,21 @@ public void savePalettesClicked(GButton source, GEvent event) { //_CODE_:savePal
     int n = 0;
     for(int i = 0; i < 6; i++){
       if(explorePreMadePalette == "Winter Wonderland")
-        palettes.get(palettes.size()-1).addColor(hex(color(winterW[n], winterW[n+1], winterW[n+2]), 6));
+        palettes.get(palettes.size()-1).addColor(color(winterW[n], winterW[n+1], winterW[n+2]));
       else if(explorePreMadePalette == "Vivid Spring")
-        palettes.get(palettes.size()-1).addColor(hex(color(vSpring[n], vSpring[n+1], vSpring[n+2]), 6));
+        palettes.get(palettes.size()-1).addColor(color(vSpring[n], vSpring[n+1], vSpring[n+2]));
       else if(explorePreMadePalette == "Pastel Summer")
-        palettes.get(palettes.size()-1).addColor(hex(color(pSummer[n], pSummer[n+1], pSummer[n+2]), 6));
+        palettes.get(palettes.size()-1).addColor(color(pSummer[n], pSummer[n+1], pSummer[n+2]));
       else if(explorePreMadePalette == "Pumpkin Spice")
-        palettes.get(palettes.size()-1).addColor(hex(color(pumpkinS[n], pumpkinS[n+1], pumpkinS[n+2]), 6));
+        palettes.get(palettes.size()-1).addColor(color(pumpkinS[n], pumpkinS[n+1], pumpkinS[n+2]));
       else if(explorePreMadePalette == "Northern Lights")
-        palettes.get(palettes.size()-1).addColor(hex(color(nLights[n], nLights[n+1], nLights[n+2]), 6));
+        palettes.get(palettes.size()-1).addColor(color(nLights[n], nLights[n+1], nLights[n+2]));
       else if(explorePreMadePalette == "Enchanted Forest")
-        palettes.get(palettes.size()-1).addColor(hex(color(eForest[n], eForest[n+1], eForest[n+2]), 6));
+        palettes.get(palettes.size()-1).addColor(color(eForest[n], eForest[n+1], eForest[n+2]));
       else if(explorePreMadePalette == "Sunset by the Beach")
-        palettes.get(palettes.size()-1).addColor(hex(color(sBeach[n], sBeach[n+1], sBeach[n+2]), 6));
+        palettes.get(palettes.size()-1).addColor(color(sBeach[n], sBeach[n+1], sBeach[n+2]));
       else if(explorePreMadePalette == "Lavender Landscape")
-        palettes.get(palettes.size()-1).addColor(hex(color(lavenderL[n], lavenderL[n+1], lavenderL[n+2]), 6));
+        palettes.get(palettes.size()-1).addColor(color(lavenderL[n], lavenderL[n+1], lavenderL[n+2]));
       n+=3;
     }
   }
@@ -100,12 +101,20 @@ public void savePalettesClicked(GButton source, GEvent event) { //_CODE_:savePal
 } //_CODE_:savePalettes:410609:
 
 public void backClicked(GButton source, GEvent event) { //_CODE_:back:308297:
-  if(screen.screen == 10)  //color theory to home
-    screen.screen = 1;
-  else if(screen.screen == 5 && previousScreen == 2)  //see similar/complementary colors
-    screen.screen = 2;
-  else
+  resetScreen();
+  if(screen.screen == 4 || screen.screen == 7 || screen.screen == 9 ) {
     screen.screen -= 1;
+  }
+  else if(screen.screen == 10) {  //color theory to home
+    screen.screen = 1;
+  }
+  else if(screen.screen == 5 && previousScreen == 2) {  //see similar colors
+    screen.screen = 2;
+  }
+  else {
+    screen.screen -= 1;
+  }
+  screen.callScreens();
 } //_CODE_:back:308297:
 
 public void deleteClicked(GButton source, GEvent event) { //_CODE_:delete:600029:
@@ -128,7 +137,8 @@ public void mainSliderChanged(GSlider source, GEvent event) { //_CODE_:mainSlide
 public void seeSimilarClicked(GButton source, GEvent event) { //_CODE_:seeSimilar:278952:
   resetScreen();
   screen.screen = 5;
-  previousScreen = screen.screen;
+  screenPast = 2;
+  previousScreen = 2;
   for(int i=0; i<2; i++) {
     for(int j=0; j<3; j++) {
       paletteSquares[i][j].r = colorWheelSquare.r + int(random(-50, 50));
@@ -182,6 +192,7 @@ public void colorTheoryMainClicked(GButton source, GEvent event) { //_CODE_:colo
 
 public void windowXClicked(GButton source, GEvent event) { //_CODE_:windowX:545388:
   saveClicked = false;
+  popUpEnabled = false;
   newPalette = false;
   previousScreen = screen.screen;
 } //_CODE_:windowX:545388:

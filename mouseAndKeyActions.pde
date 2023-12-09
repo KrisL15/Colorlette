@@ -4,23 +4,25 @@ void mouseReleased() {
     likeButton(colorWheelSquare, 0, 0);
     saveColor(colorWheelSquare);
   }
-  for(int i = 0; i < 10; i++){
-    for(int j = 0; j < 3; j++){
-      likeButton(browseColoredSquares[i][j], i, j);
-      if(screen.screen == 4 || screen.screen == 9){
-        if(i == saveI && j == saveJ)
-          saveColor(browseColoredSquares[saveI][saveJ]);
+  else if(screen.screen == 4 || screen.screen == 9){
+    for(int i = 0; i < 10 && saveClicked == false; i++){
+      for(int j = 0; j < 3 && saveClicked == false; j++){
+        likeButton(browseColoredSquares[i][j], i, j);
       }
     }
+    saveColor(browseColoredSquares[saveI][saveJ]);
+    if (saveClicked)
+      popUpEnabled = true;
   }
-  for(int i = 0; i < 2; i++){
-    for(int j = 0; j < 3; j++){
-      likeButton(paletteSquares[i][j], i, j);
-      if(screen.screen == 7){
-        if(i == saveI && j == saveJ)
-          saveColor(paletteSquares[saveI][saveJ]);
+  else if(screen.screen == 5 || screen.screen == 7){
+    for(int i = 0; i < 2 && saveClicked == false; i++){
+      for(int j = 0; j < 3 && saveClicked == false; j++){
+        likeButton(paletteSquares[i][j], i, j);
       }
     }
+    saveColor(paletteSquares[saveI][saveJ]);
+    if (saveClicked)
+      popUpEnabled = true;
   }
 
   // When on the Explore Colours screen
@@ -128,16 +130,27 @@ void mouseReleased() {
   }
   
   
-  // when on the myPalettes Screen
+  // When on the myPalettes Screen
   if(screen.screen == 8) {
-    int y = 215;
+    int y = 213;
+    int n = 0;
     if(mouseX >= 100 && mouseX <= 680){
-      if(mouseY >= 150 && mouseY <= 210){
-          paletteSelected = "Liked Colors";
+      if(mouseY >= 150 && mouseY <= 210){ // when the liked colors palette is clicked
+        paletteSelected = "Liked Colors";
+        while(n < likedColors.size()) {
+          for(int i = 0; i < 10 && n < likedColors.size(); i ++) {
+            for(int j = 0; j < 3 && n < likedColors.size(); j++){
+              browseColoredSquares[i][j].show = true;
+              browseColoredSquares[i][j].col = likedColors.get(n);
+              println(browseColoredSquares[i][j].col);
+              n++;
+            }
+          }
+        }
       }
       else {
         for(int i = 0; i < palettes.size(); i++){
-          if(mouseY >= y+i*65 && mouseY <= y+i*65+60){
+          if(mouseY >= y+i*63 && mouseY <= y+i*63+60){
             paletteSelected = palettes.get(i).title;
           }
         }
@@ -154,13 +167,13 @@ void saveColor(ColoredSquare a) {
     if(newPalette){ // creating a new palette
       if(mouseX >= 485 && mouseX <= 535 && mouseY >= 330 && mouseY <= 355){ // within the save button
         palettes.add(new MyPalette(paletteName));
-        palettes.get(palettes.size()-1).addColor(hex(a.getHexCode(), 6));
+        palettes.get(palettes.size()-1).addColor(a.getHexCode());
         paletteName = "";
         newPalette = false;
       }
     }
     
-    else { //adding to a palette
+    else if (popUpEnabled) { //adding to a palette
       if(mouseX >= 250 && mouseX <= 550){
         if(mouseY >= 260 && mouseY <= 280){ // within the create new palette section
           if(palettes.size() < 6) // max # palettes at once is 6
@@ -172,21 +185,23 @@ void saveColor(ColoredSquare a) {
         else if(mouseY > 280 && mouseY < 400) { // within a palette space
           boolean included = false;
           int y = 280;
-          for(int i = 0; i < 6; i++){
+          for(int i = 0; i < 6; i++){ // for each palette in the palette arrayList:
             if(mouseY > y && mouseY < y+20){
               try {
                 for(int b = 0; b < palettes.get(i).paletteColors.size(); b++){ // check if the color is already in the palette
-                  if(palettes.get(i).paletteColors.get(b).equals(hex(a.getHexCode(), 6))){
+                  if(palettes.get(i).paletteColors.get(b) == a.getHexCode()){
+                    println (hex (a.getHexCode(), 6));
                     included = true;
                   }
                 }
-                if(included) { // if color is already in palette, remove from palette
-                  palettes.get(i).removeColor(hex(a.getHexCode(), 6));
+                if(!included) { // if color is not in palette, add to palette
+                  palettes.get(i).addColor(a.getHexCode());
+                   println ("add", hex (a.getHexCode(), 6));
                 }
-                else {// if color is not in palette, add to palette
-                  palettes.get(i).addColor(hex(a.getHexCode(), 6));
+                else { // if color is in palette, remove from palette
+                  palettes.get(i).removeColor(a.getHexCode());
+                  println ("del", hex (a.getHexCode(), 6));
                 }
-                  
               }
               catch(IndexOutOfBoundsException e){}
             }
@@ -205,35 +220,42 @@ void likeButton(ColoredSquare a, int saveThisI, int saveThisJ) {
     if(mouseX >= a.ogX + a.x && mouseX <= a.ogX +a.x + a.size && mouseY >= a.ogY +a.y && mouseY <= a.ogY +a.y + a.size) {
       
       // if mouse is over the heart button, turn it to the opposite (if liked, unlike; if not liked, like)
-      if(mouseX <= a.ogX +a.x + a.size/7*1.1 && mouseY >= a.ogY +a.y + a.size - (a.size/7)) {
+      if(mouseX <= a.x + (a.size/7)*1.1 && mouseY >= a.ogY +a.y + a.size - (a.size/7)) {
         if(a.liked == false) {
           a.liked = true;
-          likedColors.add(hex(a.getHexCode(), 6));
+          likeButtonClicked = true;
+          likedColors.add(a.getHexCode());
+          println(likedColors);
         }
         else {
           a.liked = false;
-          likedColors.remove(hex(a.getHexCode(), 6));
+          likeButtonClicked = true;
+          for(int i = 0; i < likedColors.size(); i++) {
+            if(likedColors.get(i) == a.getHexCode())
+              likedColors.remove(i);
+          }
         }
       }
           
       // else if mouse is over the save button, run the save function
-      else if (mouseX >= a.ogX + a.x + a.size/7*1.1 && mouseX <= a.ogX +a.x + a.size/7*2.2 && mouseY >= a.ogY + a.y + a.size - (a.size/7)) {
+      else if (mouseX >= a.ogX + a.x + a.size/7*1.1 && mouseX <= a.ogX + a.x + a.size/7*2.2 && mouseY >= a.ogY + a.y + a.size - (a.size/7)) {
         saveClicked = true;
         saveI = saveThisI;
         saveJ = saveThisJ;
       }
+      
       // else, take you to view the color + similar colors
-      else if(screen.screen == 4 || screen.screen == 9) {
-        screen.screen = 5;
-        saveI = saveThisI;
-        saveJ = saveThisJ;
+      else if((screen.screen == 4 || screen.screen == 9) && likeButtonClicked == false) {
+        saveBrowseI = saveThisI;
+        saveBrowseJ = saveThisJ;
         screenPast = screen.screen;
         for(int i=0; i<2; i++) {
           for(int j=0; j<3; j++) {
-          paletteSquares[i][j].r = browseColoredSquares[saveI][saveJ].r + int(random(-50, 50));
-          paletteSquares[i][j].g = browseColoredSquares[saveI][saveJ].g + int(random(-50, 50));
-          paletteSquares[i][j].b = browseColoredSquares[saveI][saveJ].b + int(random(-50, 50));
+          paletteSquares[i][j].r = browseColoredSquares[saveBrowseI][saveBrowseJ].r + int(random(-50, 50));
+          paletteSquares[i][j].g = browseColoredSquares[saveBrowseI][saveBrowseJ].g + int(random(-50, 50));
+          paletteSquares[i][j].b = browseColoredSquares[saveBrowseI][saveBrowseJ].b + int(random(-50, 50));
           }
+        screen.screen = 5;
         }
       }
     }
@@ -255,13 +277,16 @@ void keyPressed() {
         paletteName = paletteName + key;
       }
     }
-    else if (key == ENTER) {
+    else if (key == ENTER) {      
       palettes.add(new MyPalette(paletteName));
       if(screen.screen == 2){
-        palettes.get(palettes.size()-1).addColor(hex(colorWheelSquare.getHexCode(), 6));
+        palettes.get(palettes.size()-1).addColor(colorWheelSquare.getHexCode());
       }
       else if (screen.screen == 4 || screen.screen == 9){
-        palettes.get(palettes.size()-1).addColor(hex(browseColoredSquares[saveI][saveJ].getHexCode(), 6));
+        palettes.get(palettes.size()-1).addColor(browseColoredSquares[saveI][saveJ].getHexCode());
+      }
+      else if (screen.screen == 5 || screen.screen == 7){
+        palettes.get(palettes.size()-1).addColor(paletteSquares[saveI][saveJ].getHexCode());
       }
       paletteName = "";
       newPalette = false;

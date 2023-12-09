@@ -54,6 +54,7 @@ class Screen {
   
   
   void colorWheel() {
+    colorWheelSquare.show = true;
     colorWheelSquare.drawSquare();
     
     //slider texts
@@ -105,6 +106,7 @@ class Screen {
   }
   
   void exploreColors2() {
+    textAlign(CENTER);
     textSize(50);
     fill(155, 98, 197);
     if(browseColoredSquares[1][1].ogY > -50)
@@ -115,6 +117,7 @@ class Screen {
     }
     for(int i = 0; i < 10; i ++) {
       for(int j = 0; j < 3; j++){
+        browseColoredSquares[i][j].show = true;
         browseColoredSquares[i][j].drawSquare();
       }
     }
@@ -147,7 +150,7 @@ class Screen {
       text("#" + hex(colorWheelSquare.getHexCode(), 6), 165, 330);
     }
     else{
-      fill(browseColoredSquares[saveI][saveJ].getHexCode());
+      fill(browseColoredSquares[saveBrowseI][saveBrowseJ].getHexCode());
       square(35, 180, 280);
     
       //determine text color based on square color
@@ -165,16 +168,17 @@ class Screen {
         fill(255);
       
       textSize(30);
-      text("#" + hex(browseColoredSquares[saveI][saveJ].getHexCode(), 6), 165, 330);
+      text("#" + hex(browseColoredSquares[saveBrowseI][saveBrowseJ].getHexCode(), 6), 165, 330);
     }
     
     for(int i=0; i<2; i++) {
       for(int j=0; j<3; j++) {
+        paletteSquares[i][j].show = true;
         paletteSquares[i][j].drawSquare();
       }
     }
-    //ExploreSpecificColor();
   }
+  
   
   void explorePalettes() {
     //textFont(brandFont);
@@ -203,6 +207,7 @@ class Screen {
     }
   }
   
+  
   void explorePaletteSelected() {
     //textFont(brandFont);
     textAlign(CENTER);
@@ -220,6 +225,7 @@ class Screen {
           paletteSquares[i][j].g = winterW[n+1];
           paletteSquares[i][j].b = winterW[n+2];
 
+          paletteSquares[i][j].show = true;
           paletteSquares[i][j].drawSquare();
 
           n += 3;
@@ -235,6 +241,7 @@ class Screen {
           paletteSquares[i][j].g = vSpring[n+1];
           paletteSquares[i][j].b = vSpring[n+2];
 
+          paletteSquares[i][j].show = true;
           paletteSquares[i][j].drawSquare();
 
           n += 3;
@@ -250,6 +257,7 @@ class Screen {
           paletteSquares[i][j].g = pSummer[n+1];
           paletteSquares[i][j].b = pSummer[n+2];
 
+          paletteSquares[i][j].show = true;
           paletteSquares[i][j].drawSquare();
 
           n += 3;
@@ -265,6 +273,7 @@ class Screen {
           paletteSquares[i][j].g = pumpkinS[n+1];
           paletteSquares[i][j].b = pumpkinS[n+2];
 
+          paletteSquares[i][j].show = true;
           paletteSquares[i][j].drawSquare();
 
           n += 3;
@@ -280,6 +289,7 @@ class Screen {
           paletteSquares[i][j].g = nLights[n+1];
           paletteSquares[i][j].b = nLights[n+2];
 
+          paletteSquares[i][j].show = true;
           paletteSquares[i][j].drawSquare();
 
           n += 3;
@@ -295,6 +305,7 @@ class Screen {
           paletteSquares[i][j].g = eForest[n+1];
           paletteSquares[i][j].b = eForest[n+2];
 
+          paletteSquares[i][j].show = true;
           paletteSquares[i][j].drawSquare();
 
           n += 3;
@@ -310,6 +321,7 @@ class Screen {
           paletteSquares[i][j].g = sBeach[n+1];
           paletteSquares[i][j].b = sBeach[n+2];
 
+          paletteSquares[i][j].show = true;
           paletteSquares[i][j].drawSquare();
 
           n += 3;
@@ -325,6 +337,7 @@ class Screen {
           paletteSquares[i][j].g = lavenderL[n+1];
           paletteSquares[i][j].b = lavenderL[n+2];
 
+          paletteSquares[i][j].show = true;
           paletteSquares[i][j].drawSquare();
 
           n += 3;
@@ -340,6 +353,7 @@ class Screen {
           paletteSquares[i][j].g = mono[n+1];
           paletteSquares[i][j].b = mono[n+2];
 
+          paletteSquares[i][j].show = true;
           paletteSquares[i][j].drawSquare();
 
           n += 3;
@@ -359,6 +373,8 @@ class Screen {
     // liked colors palette
     fill(200,200,200);
     rect(100, 150, 680, 60);
+    fill(225);
+    square(38, 167, 25);
     fill(0);
     textAlign(LEFT);
     textSize(30);
@@ -367,39 +383,50 @@ class Screen {
     textSize(30);
     text(likedColors.size() + " Color(s)", 750, 190);
       
-    int rectY = 215;
+    int rectY = 213;
     int textY = 256;
     for(int i = 0; i < palettes.size(); i++){
       fill(200,200,200);
-      rect(100, rectY+i*65, 680, 60);
+      rect(100, rectY+i*63, 680, 60);
+      fill(225);
+      square(38, rectY+17+i*63, 25);
       
       fill(0);
       textAlign(LEFT);
       textSize(30);
-      text(palettes.get(i).title, 110, textY+i*65);
+      text(palettes.get(i).title, 110, textY+i*63);
       
       textAlign(RIGHT);
       textSize(30);
-      text(palettes.size() + " Color(s)", 750, textY+i*65);
+      text(palettes.get(i).paletteColors.size() + " Color(s)", 750, textY+i*65);
     }
   }
   
   void myPalettesSelected() {
+    int n = 0;
     //textFont(brandFont);
     textAlign(CENTER);
     textSize(50);
     textSize(50);
     fill(155, 98, 197);
-    if(browseColoredSquares[1][1].ogY > -50)
-      text(paletteSelected, width/2, 125);
-    else {
-      fill(255);
-      rect(100, 80, 600, 50);
-    }
-    for(int i = 0; i < 10; i ++) {
-      for(int j = 0; j < 3; j++){
-        browseColoredSquares[i][j].drawSquare();
+    try {
+      if(browseColoredSquares[1][1].ogY > -50)
+        text(paletteSelected, width/2, 125);
+      else {
+        fill(255);
+        rect(100, 80, 600, 50);
       }
+      while(n < likedColors.size()) {
+        for(int i = 0; i < 10 && n < likedColors.size(); i ++) {
+          for(int j = 0; j < 3 && n < likedColors.size(); j++){
+            browseColoredSquares[i][j].show = true;
+            browseColoredSquares[i][j].drawSquare();
+            n++;
+          }
+        }
+      }
+    }
+    catch(IndexOutOfBoundsException e){
     }
   }
   

@@ -32,7 +32,7 @@ void invisibleControls() {
     seeSimilar.setVisible(false);
   }
   
-  if (screen.screen <= 3 || screen.screen == 6 || screen.screen == 7 || screen.screen == 8) { // screens without slider bars
+  if (screen.screen <= 3 || screen.screen == 5 || screen.screen == 6 || screen.screen == 7 || screen.screen == 8) { // screens without slider bars
     mainSlider.setVisible(false);
   }
   

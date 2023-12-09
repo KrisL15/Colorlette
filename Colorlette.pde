@@ -5,21 +5,25 @@ String exploreColorType = "NONE";
 String explorePreMadePalette = "NONE";
 
 boolean saveClicked = false; // when the save button is clicked and the pop-up appears, it changes the mouse clicking options (variable mostly used in mouseActions, controls and saveColorPopUp)
+boolean popUpEnabled = false;
 int saveI; // saves the i and j value of the specific browseColoredSquares or paletteSquares when the save button is clicked
 int saveJ;
+int saveBrowseI;
+int saveBrowseJ;
 boolean newPalette = false; // if the user wants to create a new palette
 String paletteName = ""; // new palette name
 boolean palettesMaxed = false; // up to 6 palettes can be made at once. This variable tracks whether the max # of palettes have been reached.
 String paletteSelected;
 int screenPast = 0;
+boolean likeButtonClicked;
 
 Screen screen = new Screen(1);
 
-ColoredSquare colorWheelSquare = new ColoredSquare(2, 237.5, 80, 325);
+ColoredSquare colorWheelSquare = new ColoredSquare(237.5, 80, 325);
 ColoredSquare[][] browseColoredSquares = new ColoredSquare[10][3];
 ColoredSquare[][] paletteSquares = new ColoredSquare[2][3];
 
-ArrayList<String> likedColors = new ArrayList<String>();
+ArrayList<Integer> likedColors = new ArrayList<Integer>();
 ArrayList<MyPalette> palettes = new ArrayList<MyPalette>();
 
 // pre-made color palettes
@@ -44,7 +48,7 @@ void setup() {
   int y = 160;
   for(int i = 0; i < 10; i++) {
     for(int j = 0; j < 3; j++) {
-      browseColoredSquares[i][j] = new ColoredSquare(4, x, y, 200);
+      browseColoredSquares[i][j] = new ColoredSquare(x, y, 200);
       x+=240;
     }
     y += 240;
@@ -56,7 +60,7 @@ void setup() {
   y = 180;
   for(int i = 0; i < 2; i++) {
     for(int j = 0; j < 3; j++) {
-      paletteSquares[i][j] = new ColoredSquare(7, x, y, 125);
+      paletteSquares[i][j] = new ColoredSquare(x, y, 125);
       x+=145;
     }
     y += 155;
@@ -90,6 +94,7 @@ void setup() {
 
 void draw() {
   background(255);
+  likeButtonClicked = false;
   screen.callScreens();
   screen.navigatorBar();
   invisibleControls();
