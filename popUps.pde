@@ -6,7 +6,7 @@ void saveColorPopUp() {
     tint(0,0,0,125);
     image(winterWonderland, 0, 40, 800, 600);
     noTint();
-    maxPalettesReached();
+    framePopUpStarted = frameCount;
     
     //white rectangle pop-up
     fill(255);
@@ -90,12 +90,29 @@ void saveColorPopUp() {
 }
 
 void maxPalettesReached() { //message displayed at the bottom of the screen when max # of palettes have been made
-  if (palettesMaxed){
+  if(palettesMaxed) {
+    textAlign(LEFT);
     textSize(16);
     fill(237, 79, 62);
     rect(0, 45, 800, 50);
     fill(255);
     text("6/6 palettes have been made. To create a new palette, delete or merge some of your palettes.", 30, 77);
-  
+    if((framePopUpStarted + 144) < frameCount) {
+      palettesMaxed = false;
+    }
+  }
+}
+
+void savedPalettePopUp() {
+  if(savePreMadePalettePopUp) {
+    textAlign(LEFT);
+    textSize(30);
+    fill(150, 150, 150);
+    rect(0, 45, 800, 50);
+    fill(255);
+    text("SAVED!", 345, 80);
+    if((framePopUpStarted + 72) < frameCount) {
+      savePreMadePalettePopUp = false;
+    }
   }
 }

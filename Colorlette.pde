@@ -4,7 +4,7 @@ PImage ct1, ct2, ct3, ct4, ct5, ct6, ct7, colorletteLogo, likedColor, notALikedC
 String exploreColorType = "NONE";
 String explorePreMadePalette = "NONE";
 
-boolean saveClicked = false; // when the save button is clicked and the pop-up appears, it changes the mouse clicking options (variable mostly used in mouseActions, controls and saveColorPopUp)
+boolean saveClicked = false; // when the save button is clicked and the pop-up appears, it changes the mouse clicking options (variable mostly used in mouseActions, controls and popUps)
 boolean popUpEnabled = false;
 int saveI; // saves the i and j value of the specific browseColoredSquares or paletteSquares when the save button is clicked
 int saveJ;
@@ -16,6 +16,10 @@ boolean palettesMaxed = false; // up to 6 palettes can be made at once. This var
 String paletteSelected;
 int screenPast = 0;
 boolean likeButtonClicked;
+boolean showMergeAndDeleteButton = false;
+int numPalettesSelected;
+int framePopUpStarted;
+boolean savePreMadePalettePopUp = false;
 
 Screen screen = new Screen(1);
 
@@ -99,4 +103,7 @@ void draw() {
   screen.navigatorBar();
   invisibleControls();
   saveColorPopUp();
+  maxPalettesReached();
+  savedPalettePopUp();
+ // println (likedColors);
 }

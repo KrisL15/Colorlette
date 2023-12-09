@@ -31,7 +31,10 @@ class ColoredSquare {
       
       if(screen.screen < 8)
         this.col = getHexCode();
-      
+        this.r = int(red(this.col));
+        this.g = int(green(this.col));
+        this.b = int(blue(this.col));
+
       fill(this.col);
       square(this.ogX+this.x, this.ogY+this.y, this.size);
     

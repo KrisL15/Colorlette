@@ -2,11 +2,13 @@ class MyPalette {
   // FIELDS
   String title;
   ArrayList<Integer> paletteColors;
+  boolean mergeDeleteSelected;
  
   // CONSTRUCTOR
   MyPalette(String t){
     this.title = t;
     this.paletteColors = new ArrayList<Integer>();
+    mergeDeleteSelected = false;
   }
   
   // METHODS

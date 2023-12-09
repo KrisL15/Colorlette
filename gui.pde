@@ -20,13 +20,19 @@ void resetScreen() {
   saveClicked = false;
   popUpEnabled = false;
   palettesMaxed = false;
+  savePreMadePalettePopUp = false;
   //reset every y value to 0 so that nothing on the new selected page has been scrolled yet
   mainSlider.setLimits(0, 0.0, 100.0);
   screen.y = 0;
   for(int i = 0; i < 10; i ++) {
     for(int j = 0; j < 3; j++) {
       browseColoredSquares[i][j].ogY = 0;
+      if(previousScreen == 9)
+        browseColoredSquares[i][j].liked = false;      
     }
+  }
+  for(int i = 0; i < palettes.size(); i++){ // go through each palette to see which are selected to be deleted
+    palettes.get(i).mergeDeleteSelected = false;
   }
 }
 
@@ -56,8 +62,8 @@ public void explorePalettesClicked(GButton source, GEvent event) { //_CODE_:expl
 
 public void myPalettesClicked(GButton source, GEvent event) { //_CODE_:myPalettes:900340:
   resetScreen();
-  screen.screen = 8;
   previousScreen = screen.screen;
+  screen.screen = 8;
 } //_CODE_:myPalettes:900340:
 
 public void savePalettesClicked(GButton source, GEvent event) { //_CODE_:savePalettes:410609:
@@ -66,8 +72,11 @@ public void savePalettesClicked(GButton source, GEvent event) { //_CODE_:savePal
   resetScreen();
   screen.screen = 7;
   
-  if(palettes.size() < 6)
+  if(palettes.size() < 6) {
     newPalette = true;
+    savePreMadePalettePopUp = true;
+    framePopUpStarted = frameCount;
+  }
   else
     palettesMaxed = true;
     
@@ -96,7 +105,7 @@ public void savePalettesClicked(GButton source, GEvent event) { //_CODE_:savePal
     }
   }
   else
-    maxPalettesReached();
+    framePopUpStarted = frameCount;
   
 } //_CODE_:savePalettes:410609:
 
@@ -104,25 +113,65 @@ public void backClicked(GButton source, GEvent event) { //_CODE_:back:308297:
   resetScreen();
   if(screen.screen == 4 || screen.screen == 7 || screen.screen == 9 ) {
     screen.screen -= 1;
+    println("scrn4");
   }
   else if(screen.screen == 10) {  //color theory to home
     screen.screen = 1;
   }
-  else if(screen.screen == 5 && previousScreen == 2) {  //see similar colors
-    screen.screen = 2;
+  else if(screen.screen == 5) {  //see similar colors
+    screen.screen = previousScreen;
   }
   else {
     screen.screen -= 1;
   }
-  screen.callScreens();
+  print ("GUI", screen.screen);
 } //_CODE_:back:308297:
 
 public void deleteClicked(GButton source, GEvent event) { //_CODE_:delete:600029:
-  
+  if(showMergeAndDeleteButton) {
+    int n = 0;
+    int ogNumPalettes = palettes.size();
+    while(n < ogNumPalettes) {
+      for(int i = 0; i < palettes.size(); i++){ // go through each palette to see which are selected to be deleted
+        if(palettes.get(i).mergeDeleteSelected == true)
+          palettes.remove(i);
+        n++;
+      }
+    }
+    showMergeAndDeleteButton = false;
+  }
 } //_CODE_:delete:600029:
 
 public void mergeClicked(GButton source, GEvent event) { //_CODE_:merge:607285:
-  
+  if(showMergeAndDeleteButton == true && numPalettesSelected >= 2){
+    ArrayList<Integer> mergeThese = new ArrayList<Integer>();
+    ArrayList<Integer> mergedPaletteColors = new ArrayList<Integer>();
+    int ogNumPalettes = palettes.size();
+    int n = 0;
+    String newTitle = "";
+    
+    for(int i = 0; i < palettes.size(); i++){ // go through each palette to see which are selected to be merged
+      if(palettes.get(i).mergeDeleteSelected == true)
+        mergeThese.add(i);
+    }
+    for(int a = 0; a < mergeThese.size(); a++){
+      newTitle = newTitle + " + " + mergeThese.get(a);
+      for(int b = 0; b < palettes.get(mergeThese.get(a)).paletteColors.size(); b++) // get all colors from the palettes to be merged
+        mergedPaletteColors.add(palettes.get(mergeThese.get(a)).paletteColors.get(b));
+    }
+    palettes.add(new MyPalette(newTitle));
+    for(int c = 0; c < mergedPaletteColors.size(); c++)
+      palettes.get(palettes.size()).paletteColors.add(mergedPaletteColors.get(c)); // add all colors from the palettes to be merged to the new, merged palette
+    
+    while (n < ogNumPalettes) {
+      for(int d = 0; d < palettes.size(); d++){
+        if(palettes.get(d).mergeDeleteSelected == true) // delete the palettes that selected to be merged
+          palettes.remove(d);
+        n++;
+      }
+    }
+    showMergeAndDeleteButton = false;
+  }
 } //_CODE_:merge:607285:
 
 public void mainSliderChanged(GSlider source, GEvent event) { //_CODE_:mainSlider:664683:

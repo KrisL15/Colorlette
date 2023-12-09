@@ -115,9 +115,11 @@ class Screen {
       fill(255);
       rect(100, 80, 600, 50);
     }
+    //println ("exploreColors2");
     for(int i = 0; i < 10; i ++) {
       for(int j = 0; j < 3; j++){
         browseColoredSquares[i][j].show = true;
+//        browseColoredSquares[i][j].liked = false;
         browseColoredSquares[i][j].drawSquare();
       }
     }
@@ -150,9 +152,9 @@ class Screen {
       text("#" + hex(colorWheelSquare.getHexCode(), 6), 165, 330);
     }
     else{
-      fill(browseColoredSquares[saveBrowseI][saveBrowseJ].getHexCode());
+      fill(browseColoredSquares[saveBrowseI][saveBrowseJ].col);
       square(35, 180, 280);
-    
+
       //determine text color based on square color
       int highestVal = browseColoredSquares[saveI][saveJ].r; // check which int value is the greatest - r, g, or b.
       if(highestVal < browseColoredSquares[saveI][saveJ].g)
@@ -373,8 +375,6 @@ class Screen {
     // liked colors palette
     fill(200,200,200);
     rect(100, 150, 680, 60);
-    fill(225);
-    square(38, 167, 25);
     fill(0);
     textAlign(LEFT);
     textSize(30);
@@ -385,20 +385,51 @@ class Screen {
       
     int rectY = 213;
     int textY = 256;
+
     for(int i = 0; i < palettes.size(); i++){
-      fill(200,200,200);
+      // if there are colors in the palette, set the rectangle color (behind the palette title text) to the first color in the palette. Else set to grey
+      if(palettes.get(i).paletteColors.size() > 0)
+        fill(palettes.get(i).paletteColors.get(0));
+      else
+        fill(200,200,200);
       rect(100, rectY+i*63, 680, 60);
-      fill(225);
+      
+      // the little square to click if user wants to delete or merge palettes
+      if(palettes.get(i).mergeDeleteSelected == true)
+        fill(155, 98, 197);
+      else
+        fill(225);
       square(38, rectY+17+i*63, 25);
       
-      fill(0);
+      // get the value of the first color from the arrayList in the palette to determine the rgb.
+      int r = int(red(palettes.get(i).paletteColors.get(0)));
+      int g = int(green(palettes.get(i).paletteColors.get(0)));
+      int b = int(blue(palettes.get(i).paletteColors.get(0)));
+      
+      int highestVal = r; // check which int value is the greatest - r, g, or b.
+      if(highestVal < g)
+        highestVal = g;
+      if(highestVal < b)
+        highestVal = b;
+    
+      if(highestVal == b && r < 100 && g < 100) // When there's mostly blue, the colour is dark so we need a white text font
+        fill(255);
+      else if(highestVal > 150) // If highest int value between r, g, and b is greater than 100, the color is light/bright so the text is printed in black
+        fill(0);
+      else // The coloured is too dark so the text should be printed in white
+        fill(255);
       textAlign(LEFT);
       textSize(30);
-      text(palettes.get(i).title, 110, textY+i*63);
+      text(palettes.get(i).title, 110, textY+i*63); // title of the palette
       
       textAlign(RIGHT);
       textSize(30);
       text(palettes.get(i).paletteColors.size() + " Color(s)", 750, textY+i*65);
+    }
+    
+    if(showMergeAndDeleteButton) {
+      fill(0);
+      rect(0, height-42, width, 42);
     }
   }
   
@@ -416,6 +447,10 @@ class Screen {
         fill(255);
         rect(100, 80, 600, 50);
       }
+    }
+    catch(IndexOutOfBoundsException e){}
+    
+    if(paletteSelected == "Liked Colors"){
       while(n < likedColors.size()) {
         for(int i = 0; i < 10 && n < likedColors.size(); i ++) {
           for(int j = 0; j < 3 && n < likedColors.size(); j++){
@@ -426,7 +461,26 @@ class Screen {
         }
       }
     }
-    catch(IndexOutOfBoundsException e){
+    
+    else {
+      int savePalette = -1;
+      for(int p = 0; p < palettes.size(); p++){
+        if(palettes.get(p).title.equals(paletteSelected)){
+          savePalette = p;
+        }
+      }
+      n = 0;
+      try {
+        while(n < palettes.get(savePalette).paletteColors.size()) {
+          for(int i = 0; i < 10 && n < palettes.get(savePalette).paletteColors.size(); i ++) {
+            for(int j = 0; j < 3 && n < palettes.get(savePalette).paletteColors.size(); j++){
+              browseColoredSquares[i][j].show = true;
+              browseColoredSquares[i][j].drawSquare();
+              n++;
+            }
+          }
+        }
+      } catch(IndexOutOfBoundsException e){} 
     }
   }
   
