@@ -1,22 +1,16 @@
 class Screen {
   // FIELDS
-  PImage brand;
-  //brand = loadImage("Colorlette.png");
-  PFont brandFont;  //upload brand font (for text and/or brand title)
-  //brandFont = createFont("Cambria-Bold-48.vwl". 48);
-
   int screen, x, y;
   
   // CONSTRUCTOR
   Screen(int s) {
-    //this.brand =   loadImage("Colorlette.png");
-    //this.brandFont = createFont("Cambria-Bold-48.vwl". 48);
     this.screen = s;
     this.x = 0;
     this.y = 0;
   }
   
   // METHODS
+  // calls different functions depending on which screen the user is on
   void callScreens() {
     if(this.screen == 1)
       home();
@@ -41,6 +35,7 @@ class Screen {
   }
   
   
+  // bar across the top of the screen (purple 'background' color for a smoother appearance)
   void navigatorBar() {
     fill(155, 98, 197);
     noStroke();
@@ -48,17 +43,18 @@ class Screen {
   }
   
   
+  // screen 1
   void home() {
     image(colorletteLogo, 150, 40, 500, 180);
   }
   
   
+  // screen 2
   void colorWheel() {
     colorWheelSquare.show = true;
     colorWheelSquare.drawSquare();
     
     //slider texts
-    //textFont(brandFont);
     fill(0);
     textAlign(LEFT);
     text("red", width/4, 450);
@@ -68,14 +64,14 @@ class Screen {
   }
   
   
+  // screen 3
   void exploreColorsMain() {
-    //textFont(brandFont);
     textAlign(CENTER);
     textSize(50);
     fill(155, 98, 197);
     text("Explore Colors!", width/2, 125);
     
-    //colour options ("buttons")
+    //colour options (for the "buttons")
     color[] col = {#CE5858, #E39759, #EBC267, #4A661C, #415E8B, #7C008D, #9ABED1, #3B0000, #5F5F5F};
     String[] colText = {"RED", "ORANGE", "YELLOW", "GREEN", "BLUE", "PURPLE", "PASTEL", "DULL", "MONOTONE"};
     int buttonX = 12;
@@ -96,6 +92,7 @@ class Screen {
   }
   
   
+  // draw the "buttons" for the color options (these aren't GUI - they're rectangles which we use the mouse x and y to determine which color the user wants to explore)
   void exploreColorsOptions(color col, String colText, int buttonX, int buttonY) {
     fill(col);
     rect(buttonX, buttonY, 250, 100, 10, 10, 10, 10);
@@ -105,6 +102,8 @@ class Screen {
     mainSlider.setLimits(0, 0.0, 100.0);
   }
   
+  
+  // screen 4 - deeper into the explore colors (eg. if the "RED" rectangle was clicked, the user is taken to this screen and red colors are displayed)
   void exploreColors2() {
     textAlign(CENTER);
     textSize(50);
@@ -115,21 +114,23 @@ class Screen {
       fill(255);
       rect(100, 80, 600, 50);
     }
-    //println ("exploreColors2");
     for(int i = 0; i < 10; i ++) {
       for(int j = 0; j < 3; j++){
         browseColoredSquares[i][j].show = true;
-//        browseColoredSquares[i][j].liked = false;
         browseColoredSquares[i][j].drawSquare();
       }
     }
   }
   
+  
+  // screen 5 - when a specific colored square is clicked (shows similar colors to the selected color)
   void exploreColorsSelected() {
     textAlign(CENTER);
     textSize(50);
     fill(155, 98, 197);
     text("Similar Colors:", 400, 125);
+    
+    // if the past screen was the color wheel screen
     if(screenPast == 2){
       fill(colorWheelSquare.r, colorWheelSquare.g, colorWheelSquare.b);
       square(35, 180, 280);
@@ -151,7 +152,9 @@ class Screen {
       textSize(30);
       text("#" + hex(colorWheelSquare.getHexCode(), 6), 165, 330);
     }
-    else{
+    
+    // if the past screen was not the color wheel screen (the difference is whether we get the color from the individual colorSqaure "colorWheelSquare" or the array of coloredSqaures "browseColoredSquares")
+    else {
       fill(browseColoredSquares[saveBrowseI][saveBrowseJ].col);
       square(35, 180, 280);
 
@@ -182,8 +185,8 @@ class Screen {
   }
   
   
+  // screen 6 - displays our pre-made palette's names
   void explorePalettes() {
-    //textFont(brandFont);
     textAlign(CENTER);
     textSize(50);
     fill(155, 98, 197);
@@ -210,20 +213,21 @@ class Screen {
   }
   
   
+  // screen 7 - deeper into the explore palettes (displays the palette colors and an image with the colors for inspiration for the user)
   void explorePaletteSelected() {
-    //textFont(brandFont);
     textAlign(CENTER);
     textSize(50);
     fill(155, 98, 197);
     text(explorePreMadePalette, width/2, 125);
 
     int n = 0;
-
+    
+    // set rgb values for the Winter Wonderland palette
     if(explorePreMadePalette == "Winter Wonderland"){
       image(winterWonderland, 35, 180, 280, 280);
       for(int i=0; i<2; i++) {
         for(int j=0; j<3; j++) {
-          paletteSquares[i][j].r = winterW[n];
+          paletteSquares[i][j].r = winterW[n]; // set the rgb values of the coloredSquares in the paletteSquares array
           paletteSquares[i][j].g = winterW[n+1];
           paletteSquares[i][j].b = winterW[n+2];
 
@@ -234,7 +238,8 @@ class Screen {
         }
       }
     }
-
+    
+    // set rgb values for the Vivid Spring palette
     else if(explorePreMadePalette == "Vivid Spring"){
       image(vividSpring, 35, 180, 280, 280);
       for(int i=0; i<2; i++) {
@@ -251,6 +256,7 @@ class Screen {
       }
     }
 
+    // set rgb values for the Pastel Summer palette
     if(explorePreMadePalette == "Pastel Summer"){
       image(pastelSummer, 35, 180, 280, 280);
       for(int i=0; i<2; i++) {
@@ -267,6 +273,7 @@ class Screen {
       }
     }
 
+    // set rgb values for the Pumpkin Spice palette
     else if(explorePreMadePalette == "Pumpkin Spice"){
       image(pumpkinSpice, 35, 180, 280, 280);
       for(int i=0; i<2; i++) {
@@ -283,6 +290,7 @@ class Screen {
       }
     }
 
+    // set rgb values for the Northern Lights palette
     else if(explorePreMadePalette == "Northern Lights"){
       image(northernLights, 35, 180, 280, 280);
       for(int i=0; i<2; i++) {
@@ -299,6 +307,7 @@ class Screen {
       }
     }
 
+    // set rgb values for the Enchanted Forest palette
     else if(explorePreMadePalette == "Enchanted Forest"){
       image(enchantedForest, 35, 180, 280, 280);
       for(int i=0; i<2; i++) {
@@ -315,6 +324,7 @@ class Screen {
       }
     }
 
+    // set rgb values for the Sunset by the Beach palette
     else if(explorePreMadePalette == "Sunset by the Beach"){
       image(sunsetByTheBeach, 35, 180, 280, 280);
       for(int i=0; i<2; i++) {
@@ -331,6 +341,7 @@ class Screen {
       }
     }
 
+    // set rgb values for the Lavender Landscape palette
     else if(explorePreMadePalette == "Lavender Landscape"){
       image(lavenderLandscape, 35, 180, 280, 280);
       for(int i=0; i<2; i++) {
@@ -347,6 +358,7 @@ class Screen {
       }
     }
 
+    // set rgb values for the Monochromatic palette
     else if(explorePreMadePalette == "Monochromatic"){
       image(monochromatic, 35, 180, 280, 280);
       for(int i=0; i<2; i++) {
@@ -365,27 +377,28 @@ class Screen {
   }
 
   
+  // screen 8 - displays a list of the palettes the user created + the Liked Colors palette which contains all the colors the user "liked" with the heart button
   void myPalettes() {
-    //textFont(brandFont);
     textAlign(CENTER);
     textSize(50);
     fill(155, 98, 197);
     text("My Palettes", width/2, 125);
     
-    // liked colors palette
+    // for liked colors palette
     fill(200,200,200);
-    rect(100, 150, 680, 60);
+    rect(100, 150, 680, 60); // background rectangle/button
     fill(0);
     textAlign(LEFT);
     textSize(30);
-    text("Liked Colors", 110, 190);  
+    text("Liked Colors", 110, 190);  // title
     textAlign(RIGHT);
     textSize(30);
-    text(likedColors.size() + " Color(s)", 750, 190);
+    text(likedColors.size() + " Color(s)", 750, 190); // num colors in list
       
     int rectY = 213;
     int textY = 256;
 
+    // for each palette the user created
     for(int i = 0; i < palettes.size(); i++){
       // if there are colors in the palette, set the rectangle color (behind the palette title text) to the first color in the palette. Else set to grey
       if(palettes.get(i).paletteColors.size() > 0)
@@ -418,30 +431,43 @@ class Screen {
         fill(0);
       else // The coloured is too dark so the text should be printed in white
         fill(255);
+      
       textAlign(LEFT);
-      textSize(30);
+      float scale = float (palettes.get(i).title.length()) / 30; // set the size of the text according to the length of the palette title (so the text doesn't go off screen)
+      float textsize = 30;
+      if(scale > 1)
+        textsize = 30 / scale;
+      if(textsize < 1)
+        textsize = 1;
+      textSize(textsize);
       text(palettes.get(i).title, 110, textY+i*63); // title of the palette
       
       textAlign(RIGHT);
       textSize(30);
-      text(palettes.get(i).paletteColors.size() + " Color(s)", 750, textY+i*65);
+      text(palettes.get(i).paletteColors.size() + " Color(s)", 750, textY+i*65); // num colors in palette
     }
     
-    if(showMergeAndDeleteButton) {
+    if(showMergeAndDeleteButton) { // if the little square to merge/delete the palettes are clicked
       fill(0);
       rect(0, height-42, width, 42);
     }
   }
   
+  
+  // screen 9 - deeper into myPalettes (shows the colors in the palette that the user chose to view)
   void myPalettesSelected() {
     int n = 0;
-    //textFont(brandFont);
     textAlign(CENTER);
-    textSize(50);
-    textSize(50);
+    float scale = float (paletteSelected.length()) / 30; // set the size of the text according to the length of the palette title (so the text doesn't go off screen)
+    float textsize = 50;
+    if(scale > 1)
+      textsize = 50 / scale;
+    if(textsize < 1)
+      textsize = 1;
+    textSize(textsize);
     fill(155, 98, 197);
     try {
-      if(browseColoredSquares[1][1].ogY > -50)
+      if(browseColoredSquares[1][1].ogY > -50) // to make the palette title "disapear" if the scroll bar moves the coloredSquares above it
         text(paletteSelected, width/2, 125);
       else {
         fill(255);
@@ -450,6 +476,7 @@ class Screen {
     }
     catch(IndexOutOfBoundsException e){}
     
+    // draw the appropriate amount of coloredSquares based on the amount of colors in the liked colors palette
     if(paletteSelected == "Liked Colors"){
       while(n < likedColors.size()) {
         for(int i = 0; i < 10 && n < likedColors.size(); i ++) {
@@ -462,16 +489,17 @@ class Screen {
       }
     }
     
+    // if the palette view is one the user created
     else {
       int savePalette = -1;
       for(int p = 0; p < palettes.size(); p++){
-        if(palettes.get(p).title.equals(paletteSelected)){
+        if(palettes.get(p).title.equals(paletteSelected)){ // detect which palette was selected
           savePalette = p;
         }
       }
       n = 0;
       try {
-        while(n < palettes.get(savePalette).paletteColors.size()) {
+        while(n < palettes.get(savePalette).paletteColors.size()) { // draw the appropriate amount of coloredSquares based on the amount of colors in the palette
           for(int i = 0; i < 10 && n < palettes.get(savePalette).paletteColors.size(); i ++) {
             for(int j = 0; j < 3 && n < palettes.get(savePalette).paletteColors.size(); j++){
               browseColoredSquares[i][j].show = true;
@@ -484,6 +512,8 @@ class Screen {
     }
   }
   
+  
+  // screen 10 - formated like a document. Explains elements of color theory to the user
   void colorTheory() {
     // Images
     image(ct1, this.x+100, this.y+370, 250, 250);

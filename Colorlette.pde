@@ -17,30 +17,32 @@ String paletteSelected;
 int screenPast = 0;
 boolean likeButtonClicked;
 boolean showMergeAndDeleteButton = false;
-int numPalettesSelected;
-int framePopUpStarted;
 boolean savePreMadePalettePopUp = false;
+boolean mergePalettePopUp = false;
+int numPalettesSelected;
+int framePopUpStarted; // when the pop-up appears, track the frame so the pop-up stays on the screen for a certain amount of frames
 
 Screen screen = new Screen(1);
 
+// Colored squares - 3 different sizes and array lengths
 ColoredSquare colorWheelSquare = new ColoredSquare(237.5, 80, 325);
 ColoredSquare[][] browseColoredSquares = new ColoredSquare[10][3];
 ColoredSquare[][] paletteSquares = new ColoredSquare[2][3];
 
-ArrayList<Integer> likedColors = new ArrayList<Integer>();
-ArrayList<MyPalette> palettes = new ArrayList<MyPalette>();
+ArrayList<Integer> likedColors = new ArrayList<Integer>(); // saves the colors the user likes
+ArrayList<MyPalette> palettes = new ArrayList<MyPalette>(); // saves the palettes the user creates
 
 // pre-made color palettes
-// int paletteTitle[] = {r1,g1,b1 , r2,g2,b2 , r3,g3,b3};
+// format: int paletteTitle[] = {r1,g1,b1 , r2,g2,b2 , r3,g3,b3};
 int winterW[] = {127,137,190  ,  97,89,113  ,  53,207,196  ,  176,165,179  ,  52,38,50  ,  248,222,203};
 int vSpring[] = {100,151,85  ,  116,114,47  ,  242,205,160  ,  232,168,55  ,  217,84,44  ,  113,48,21};
 int pSummer[] = {147,182,175  ,  203,214,212  ,  234,219,221  ,  223,180,134  ,  207,151,166  ,  138,106,86};
-int pumpkinS[] = {207,195,181  ,  224,153,78  ,  191,86,15  ,  40,26,16  ,  100,63,33  ,  193,138,89};
+int pumpkinS[] = {191,86,15  ,  207,195,181  ,  224,153,78  ,  40,26,16  ,  100,63,33  ,  193,138,89};
 int nLights[] = {44,68,86  ,  27,38,47  ,  67,98,94  ,  52,135,124  ,  137,220,169  ,  218,250,212};
-color eForest[] = {5,26,25  ,  223,202,167  ,  16,54,48  ,  79,89,90  ,  145,147,148  ,  54,85,32};
-color sBeach[] = {48,43,44  ,  71,151,137  ,  207,184,144  ,  251,236,167  , 127,95,76  ,  215,136,80};
-color lavenderL[] = {241,159,154  ,  148,125,188  ,  238,211,206  ,  46,29,29  ,  89,43,81  ,  139,74,57};
-color mono[] = {177,177,177  ,  235, 235, 235  ,  34,34,34  ,  73,73,73  ,  117,117,117  ,  249,249,249};
+int eForest[] = {5,26,25  ,  223,202,167  ,  16,54,48  ,  79,89,90  ,  145,147,148  ,  54,85,32};
+int sBeach[] = {215,136,80 ,  48,43,44  ,  71,151,137  ,  207,184,144  ,  251,236,167  , 127,95,76};
+int lavenderL[] = {148,125,188  ,  241,159,154  ,  238,211,206  ,  46,29,29  ,  89,43,81  ,  139,74,57};
+int mono[] = {177,177,177  ,  235, 235, 235  ,  34,34,34  ,  73,73,73  ,  117,117,117  ,  249,249,249};
 
 
 void setup() {
@@ -105,5 +107,5 @@ void draw() {
   saveColorPopUp();
   maxPalettesReached();
   savedPalettePopUp();
- // println (likedColors);
+  mergeErrorPalettePopUp();
 }

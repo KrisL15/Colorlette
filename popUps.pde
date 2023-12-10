@@ -44,7 +44,7 @@ void saveColorPopUp() {
               included = true;
             }
           }
-          else if(screen.screen == 4 || screen.screen == 9){
+          else if(screen.screen == 4 || screen.screen == 9){ // check if the color is included
             if(palettes.get(i).paletteColors.get(a) == browseColoredSquares[saveI][saveJ].getHexCode()){
               included = true;
             }
@@ -103,7 +103,7 @@ void maxPalettesReached() { //message displayed at the bottom of the screen when
   }
 }
 
-void savedPalettePopUp() {
+void savedPalettePopUp() { // when a pre-made palette is saved (save palette button is clicked)
   if(savePreMadePalettePopUp) {
     textAlign(LEFT);
     textSize(30);
@@ -113,6 +113,20 @@ void savedPalettePopUp() {
     text("SAVED!", 345, 80);
     if((framePopUpStarted + 72) < frameCount) {
       savePreMadePalettePopUp = false;
+    }
+  }
+}
+
+void mergeErrorPalettePopUp() { // when only one palette is selected to be merged
+  if(mergePalettePopUp) {
+    textAlign(LEFT);
+    textSize(30);
+    fill(150, 150, 150);
+    rect(0, 45, 800, 50);
+    fill(255);
+    text("Please select 2 or more palettes to merge!", 75, 80);
+    if((framePopUpStarted + 72) < frameCount) {
+      mergePalettePopUp = false;
     }
   }
 }

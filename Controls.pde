@@ -1,5 +1,6 @@
+// Decides when the GUI buttons and sliders are to be displayed
 void invisibleControls() {
-  
+  // home screen
   if (screen.screen == 1) {
     colorWheelMain.setVisible(true);
     exploreColorsMain.setVisible(true);
@@ -17,6 +18,7 @@ void invisibleControls() {
   }
   
   
+  // color wheel screen
   if (screen.screen == 2) {
     redValue.setVisible(true);
     greenValue.setVisible(true);
@@ -32,7 +34,8 @@ void invisibleControls() {
   }
   
   
-  if (screen.screen <= 3 || screen.screen == 5 || screen.screen == 6 || screen.screen == 7 || screen.screen == 8) { // screens without slider bars
+  // screens without slider bars
+  if (screen.screen <= 3 || screen.screen == 5 || screen.screen == 6 || screen.screen == 7 || screen.screen == 8) {
     mainSlider.setVisible(false);
   }
   
@@ -41,7 +44,8 @@ void invisibleControls() {
   }
   
   
-  if (screen.screen == 4 || screen.screen == 5 || screen.screen == 7 || screen.screen == 9 || screen.screen == 10){ // screens with a back button
+  // screens with a back button
+  if (screen.screen == 4 || screen.screen == 5 || screen.screen == 7 || screen.screen == 9 || screen.screen == 10){
     back.setVisible(true);
   }
   
@@ -50,6 +54,7 @@ void invisibleControls() {
   }
   
   
+  // second screen of explore palettes (when the image and colors of the palette are shown)
   if (screen.screen == 7){
     savePalettes.setVisible(true);
   }
@@ -59,6 +64,7 @@ void invisibleControls() {
   }
   
   
+  // when the save pop-up appears
   if (saveClicked){
     windowX.setVisible(true);
   }
@@ -68,6 +74,7 @@ void invisibleControls() {
   }
   
   
+  // when on the myPalettes screen and the little square to merge/delete palettes is selected by the user
   if(showMergeAndDeleteButton && screen.screen == 8) {
     merge.setVisible(true);
     delete.setVisible(true); 
